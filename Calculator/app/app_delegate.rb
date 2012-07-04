@@ -1,6 +1,6 @@
 class AppDelegate
   def application(application, didFinishLaunchingWithOptions:launchOptions)
-    storyboard = UIStoryboard.storyboardWithName("Storyboard", bundle: NSBundle.mainBundle)
+    storyboard = UIStoryboard.storyboardWithName("MainStoryboard", bundle: NSBundle.mainBundle)
     view_controller = storyboard.instantiateViewControllerWithIdentifier("Main")
 
     @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.applicationFrame)
