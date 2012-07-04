@@ -32,7 +32,15 @@ class CalculatorViewController < UIViewController
     end
     operation = sender.currentTitle
     result = brain.performOperation(operation)
-    display.text = result.to_a
+    display.text = format_result(result)
+  end
+  
+  def format_result(result)
+    if (result % 1) == 0
+      "%g" % result
+    else
+      "%f" % result
+    end
   end
 
 end
