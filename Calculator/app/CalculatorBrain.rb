@@ -30,6 +30,10 @@ class CalculatorBrain
     elsif operation == "/"
       divisor = self.popOperand
       result = self.popOperand / divisor unless divisor == 0
+    elsif operation == "sin"
+      result = Math::sin(self.popOperand)
+    elsif operation == "cos"
+      result = Math::cos(self.popOperand)
     end
 
     self.pushOperand result 

@@ -46,4 +46,15 @@ describe "CalculatorViewController" do
     @cvb.digitPressed(@factory.title("5"))
     @cvb.display.text.should == ".7575"
   end
+  it "computes sine" do
+    @cvb.digitPressed(@factory.title("1"))
+    @cvb.operationPressed(@factory.title("sin"))
+    @cvb.display.text.should == "0.841471"
+  end
+  it "computes cosine" do
+    @cvb.digitPressed(@factory.title("1"))
+    @cvb.operationPressed(@factory.title("cos"))
+    @cvb.display.text.should == "0.540302"
+  end
+  
 end
