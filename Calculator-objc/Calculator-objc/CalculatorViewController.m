@@ -34,6 +34,8 @@
         self.userIsInTheMiddleOfEnteringANumber = YES;
     }
 }
+- (IBAction)decimalPressed {
+}
 - (IBAction)enterPressed {
     [self.brain pushOperand:[self.display.text doubleValue]];
     self.userIsInTheMiddleOfEnteringANumber = NO;

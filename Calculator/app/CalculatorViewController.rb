@@ -16,9 +16,18 @@ class CalculatorViewController < UIViewController
       self.display.text = digit
       @user_in_the_middle_of_entering_a_number= true
     end
-    NSLog "#{sender.currentTitle} pressed"
   end
-
+  
+  def decimalPressed
+    NSLog ". pressed"
+    if @user_in_the_middle_of_entering_a_number
+      self.display.text = self.display.text + "." unless self.display.text.index('.')
+    else
+      self.display.text = "."
+      @user_in_the_middle_of_entering_a_number= true
+    end 
+  end
+  
   def enterPressed
     NSLog "Enter pressed"
     brain.pushOperand display.text.to_f
