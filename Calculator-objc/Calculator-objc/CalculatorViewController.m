@@ -15,6 +15,7 @@
 @end
 
 @implementation CalculatorViewController
+@synthesize ticker;
 @synthesize display;
 @synthesize userIsInTheMiddleOfEnteringANumber;
 @synthesize brain = _brain;
@@ -48,5 +49,12 @@
     NSString *operation = [sender currentTitle];
     double result = [self.brain performOperation:operation];
     self.display.text = [NSString stringWithFormat:@"%g", result];
+}
+- (IBAction)clearPressed {
+}
+
+- (void)viewDidUnload {
+    [self setTicker:nil];
+    [super viewDidUnload];
 }
 @end

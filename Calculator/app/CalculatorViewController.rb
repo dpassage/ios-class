@@ -1,7 +1,8 @@
 class CalculatorViewController < UIViewController
 
   attr_accessor :display
-
+  attr_accessor :ticker
+  
   def brain
     @brain = CalculatorBrain.alloc.init unless @brain
     @brain
@@ -32,6 +33,7 @@ class CalculatorViewController < UIViewController
     NSLog "Enter pressed"
     brain.pushOperand display.text.to_f
     @user_in_the_middle_of_entering_a_number = false
+    self.ticker.text ="#{self.ticker.text} #{self.display.text}"
   end
 
   def operationPressed(sender)
@@ -42,6 +44,15 @@ class CalculatorViewController < UIViewController
     operation = sender.currentTitle
     result = brain.performOperation(operation)
     display.text = format_result(result)
+    self.ticker.text ="#{self.ticker.text} #{sender.currentTitle}"
+  end
+  
+  def clearPressed
+    NSLog "Clear pressed"
+    self.display.text = "0"
+    self.ticker.text = ""
+    @user_in_the_middle_of_entering_a_number = false
+    self.brain.reset_state
   end
   
   def format_result(result)

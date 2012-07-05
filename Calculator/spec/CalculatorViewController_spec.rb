@@ -16,6 +16,7 @@ describe "CalculatorViewController" do
   before do
     @cvb = CalculatorViewController.alloc.init
     @cvb.display = MockUILabel.new
+    @cvb.ticker = MockUILabel.new
     @factory = MockSenderFactory.new
   end
   
@@ -73,5 +74,23 @@ describe "CalculatorViewController" do
     @cvb.operationPressed(@factory.title("*"))
     @cvb.operationPressed(@factory.title("+"))
     @cvb.display.text.should == "12.566364"
+  end
+  it "keeps a ticker" do
+    @cvb.digitPressed(@factory.title("6"))
+    @cvb.decimalPressed
+    @cvb.digitPressed(@factory.title("3"))
+    @cvb.enterPressed
+    @cvb.digitPressed(@factory.title("5"))
+    @cvb.operationPressed(@factory.title("+"))
+    @cvb.digitPressed(@factory.title("2"))
+    @cvb.operationPressed(@factory.title("*"))
+    @cvb.ticker.text.should == " 6.3 5 + 2 *"
+  end
+  it "has a clear button" do
+    @cvb.digitPressed(@factory.title("3"))
+    @cvb.digitPressed(@factory.title("7"))
+    @cvb.clearPressed
+    @cvb.digitPressed(@factory.title("5"))
+    @cvb.display.text.should == "5"
   end
 end

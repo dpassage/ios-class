@@ -43,4 +43,8 @@ class CalculatorBrain
     self.pushOperand result 
     result
   end
+  
+  def reset_state
+    @operand_stack = []
+  end
 end
