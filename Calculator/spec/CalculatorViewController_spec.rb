@@ -56,5 +56,22 @@ describe "CalculatorViewController" do
     @cvb.operationPressed(@factory.title("cos"))
     @cvb.display.text.should == "0.540302"
   end
-  
+  it "computes sqrt" do
+    @cvb.digitPressed(@factory.title("25"))
+    @cvb.operationPressed(@factory.title("sqrt"))
+    @cvb.display.text.should == "5"
+    @cvb.digitPressed(@factory.title("0"))
+    @cvb.operationPressed(@factory.title("sqrt"))
+    @cvb.display.text.should == "0"
+  end
+  it "computes π" do
+    @cvb.operationPressed(@factory.title("π"))
+    @cvb.display.text.should == "3.141592"
+    @cvb.operationPressed(@factory.title("π"))
+    @cvb.enterPressed
+    @cvb.digitPressed(@factory.title("3"))
+    @cvb.operationPressed(@factory.title("*"))
+    @cvb.operationPressed(@factory.title("+"))
+    @cvb.display.text.should == "12.566364"
+  end
 end

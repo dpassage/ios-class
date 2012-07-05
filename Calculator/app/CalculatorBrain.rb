@@ -34,6 +34,10 @@ class CalculatorBrain
       result = Math::sin(self.popOperand)
     elsif operation == "cos"
       result = Math::cos(self.popOperand)
+    elsif operation == "sqrt"
+      result = Math::sqrt(self.popOperand)
+    elsif operation == "π"
+      result = Math::PI
     end
 
     self.pushOperand result 
