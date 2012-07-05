@@ -2,7 +2,7 @@ ios-class
 =========
 
 I'm participating in "CODING TOGETHER: Apps for iPhone & iPad" on
-piazza.com this summer, but I've decided to to the class exercises
+piazza.com this summer, but I've decided to do the class exercises
 in RubyMotion instead.
 
 RubyMotion is a commercial development environment which allows you
