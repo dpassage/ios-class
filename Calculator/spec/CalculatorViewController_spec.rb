@@ -27,7 +27,13 @@ describe "CalculatorViewController" do
     @cvb.operationPressed(@factory.title("+"))
     @cvb.display.text.should == "6"
   end
-  
+  it "computes 3 - 2" do
+    @cvb.digitPressed(@factory.title("3"))
+    @cvb.enterPressed
+    @cvb.digitPressed(@factory.title("2"))
+    @cvb.operationPressed(@factory.title("-"))
+    @cvb.display.text.should == "1"
+  end
   it "handles decimals with no leading 0" do
     @cvb.decimalPressed
     @cvb.digitPressed(@factory.title("7"))
@@ -62,6 +68,12 @@ describe "CalculatorViewController" do
     @cvb.operationPressed(@factory.title("sqrt"))
     @cvb.display.text.should == "5"
     @cvb.digitPressed(@factory.title("0"))
+    @cvb.operationPressed(@factory.title("sqrt"))
+    @cvb.display.text.should == "0"
+  end
+  it "returns 0 for sqrt(-1)" do
+    @cvb.digitPressed(@factory.title("1"))
+    @cvb.plusMinusPressed
     @cvb.operationPressed(@factory.title("sqrt"))
     @cvb.display.text.should == "0"
   end

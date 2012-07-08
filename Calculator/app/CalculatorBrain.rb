@@ -83,7 +83,8 @@ class CalculatorBrain
       elsif operation == "cos"
         result = Math::cos(pop_operand_off_program_stack(stack))
       elsif operation == "sqrt"
-        result = Math::sqrt(pop_operand_off_program_stack(stack))
+        operand = pop_operand_off_program_stack(stack)
+        result = Math::sqrt(operand) unless operand < 0
       elsif operation == "π"
         result = Math::PI
       elsif operation == "+/-"
