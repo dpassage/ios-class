@@ -38,6 +38,8 @@ class CalculatorBrain
       result = Math::sqrt(self.popOperand)
     elsif operation == "π"
       result = Math::PI
+    elsif operation == "+/-"
+      result = - self.popOperand
     end
 
     self.pushOperand result 

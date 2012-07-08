@@ -93,4 +93,29 @@ describe "CalculatorViewController" do
     @cvb.digitPressed(@factory.title("5"))
     @cvb.display.text.should == "5"
   end
+  it "has a backspace button" do
+    @cvb.digitPressed(@factory.title("3"))
+    @cvb.digitPressed(@factory.title("7"))
+    @cvb.backspacePressed
+    @cvb.display.text.should == "3"
+
+    @cvb.backspacePressed
+    @cvb.display.text.should == "0"
+    
+    @cvb.decimalPressed
+    @cvb.digitPressed(@factory.title("3"))
+    @cvb.backspacePressed
+    @cvb.display.text.should == "."
+    @cvb.backspacePressed
+    @cvb.display.text.should == "0"
+  end
+  it "has a plus/minus button" do
+    @cvb.digitPressed(@factory.title("3"))
+    @cvb.digitPressed(@factory.title("7"))
+    @cvb.plusMinusPressed
+    @cvb.display.text.should == "-37"
+    @cvb.plusMinusPressed
+    @cvb.display.text.should == "37"
+  end
+    
 end

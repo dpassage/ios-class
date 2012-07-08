@@ -35,11 +35,16 @@
         self.userIsInTheMiddleOfEnteringANumber = YES;
     }
 }
+
+- (IBAction)plusMinusPressed {
+}
 - (IBAction)decimalPressed {
 }
 - (IBAction)enterPressed {
     [self.brain pushOperand:[self.display.text doubleValue]];
     self.userIsInTheMiddleOfEnteringANumber = NO;
+}
+- (IBAction)backspacePressed {
 }
 
 - (IBAction)operationPressed:(UIButton *)sender {

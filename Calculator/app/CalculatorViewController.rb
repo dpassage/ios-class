@@ -55,6 +55,34 @@ class CalculatorViewController < UIViewController
     self.brain.reset_state
   end
   
+  def backspacePressed
+    NSLog "Backspace Pressed"
+    self.display.text = self.display.text[0..-2]
+    if self.display.text == ""
+      self.display.text = "0"
+      @user_in_the_middle_of_entering_a_number = false
+    end
+  end
+  
+  def plusMinusPressed
+    NSLog "+/- Pressed"
+    if @user_in_the_middle_of_entering_a_number
+      change_display_sign
+    else
+      result = brain.performOperation("+/-")
+      self.display.text = format_result(result)
+      self.ticker.text ="#{self.ticker.text} +/-"
+    end
+  end
+
+  def change_display_sign
+    if self.display.text[0] == "-"
+      self.display.text = self.display.text[1..-1]
+    else
+      self.display.text = "-" + self.display.text
+    end
+  end
+  
   def format_result(result)
     if (result % 1) == 0
       "%g" % result

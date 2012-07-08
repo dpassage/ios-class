@@ -13,4 +13,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *ticker;
 
 - (IBAction)digitPressed:(UIButton *)sender;
+- (IBAction)plusMinusPressed;
 @end
