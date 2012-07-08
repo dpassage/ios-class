@@ -8,9 +8,13 @@ class CalculatorBrain
     self.program_stack.push(operand)
   end
 
+  def pushVariable(var)
+    self.program_stack.push(var) unless CalculatorBrain.is_operator?(var)
+  end
+  
   def performOperation(operation)
     self.program_stack.push(operation)
-    CalculatorBrain::run_program(self.program)
+    CalculatorBrain.runProgram(self.program)
   end
 
   def reset_state
@@ -21,11 +25,36 @@ class CalculatorBrain
     "Implement this in Homework #2"
   end
 
-  def self.run_program(program)
-    stack = program.clone
-    CalculatorBrain::pop_operand_off_program_stack(stack)
+  def self.runProgram(program, usingVariableValues:vars)
+    stack = program.collect do |item|
+      NSLog("#{item}")
+      if self.is_variable?(item)
+        vars[item] ? vars[item] : 0
+      else
+        item
+      end
+    end
+    pop_operand_off_program_stack(stack)
   end
 
+  def self.runProgram(program)
+    self.runProgram(program, usingVariableValues:{})
+  end
+  
+  def self.variablesUsedInProgram(program)
+    ret = program.find_all {|item| self.is_variable?(item) }.uniq
+    ret.size == 0 ? nil : ret
+  end
+  # methods below here are private
+  
+  def self.is_variable?(item)
+    item.is_a?(String) && !self.is_operator?(item)
+  end
+  
+  def self.is_operator?(item)
+    ["+", "*", "-", "/", "sin", "cos", "sqrt", "+/-", "π"].include?(item)
+  end
+  
   def program_stack
     @program_stack = [] unless @program_stack
     @program_stack
