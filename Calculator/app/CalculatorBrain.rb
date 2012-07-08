@@ -26,7 +26,7 @@ class CalculatorBrain
       result = self.popOperand * self.popOperand
     elsif operation == "-"
       subtrahend = self.popOperand
-      result = self.popOperand = subtrahend
+      result = self.popOperand - subtrahend
     elsif operation == "/"
       divisor = self.popOperand
       result = self.popOperand / divisor unless divisor == 0
@@ -35,7 +35,8 @@ class CalculatorBrain
     elsif operation == "cos"
       result = Math::cos(self.popOperand)
     elsif operation == "sqrt"
-      result = Math::sqrt(self.popOperand)
+      operand = self.popOperand
+      result = Math::sqrt(operand) unless operand < 0
     elsif operation == "π"
       result = Math::PI
     elsif operation == "+/-"
