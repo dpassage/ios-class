@@ -43,7 +43,10 @@ class CalculatorBrain
     elsif self.is_unary_operator?(top_of_stack)
       result = top_of_stack + "(" + describe_stack(stack) + ")"
     elsif self.is_binary_operator?(top_of_stack)
-      rhs = if self.is_binary_operator?(stack[-1], with_lower_precedence_than:top_of_stack)
+      rhs = if self.is_binary_operator?(stack[-1], with_lower_precedence_than:top_of_stack) ||
+               (top_of_stack == "-" && self.is_additive_operator?(stack[-1])) ||
+               (top_of_stack == "/" && self.is_multplicative_operator?(stack[-1]))
+               
               "(" + describe_stack(stack) + ")"
             else
               describe_stack(stack)

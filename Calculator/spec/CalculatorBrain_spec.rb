@@ -120,8 +120,7 @@ describe "CalculatorBrain" do
       @cb.performOperation("sqrt")
       program = @cb.program
       CalculatorBrain.descriptionOfProgram(program).should == "sqrt(9), 6 * 7, 3 + 5"
-    end
-    
+    end    
     it "handles 3 E 4 E 5 E + -" do
       @cb.pushOperand(3)
       @cb.pushOperand(4)
@@ -130,6 +129,15 @@ describe "CalculatorBrain" do
       @cb.performOperation("-")
       program = @cb.program
       CalculatorBrain.descriptionOfProgram(program).should == "3 - (4 + 5)"
+    end
+    it "handles 3 E 4 E 5 E * /" do
+      @cb.pushOperand(3)
+      @cb.pushOperand(4)
+      @cb.pushOperand(5)
+      @cb.performOperation("*")
+      @cb.performOperation("/")
+      program = @cb.program
+      CalculatorBrain.descriptionOfProgram(program).should == "3 / (4 * 5)"
     end
   end
 end
