@@ -21,13 +21,45 @@ class CalculatorBrain
     @program_stack = []
   end
 
-  def self.description_of_program(program)
-    "Implement this in Homework #2"
+  def self.descriptionOfProgram(program)
+    stack = program.clone
+    result = describe_stack(stack)
+    while stack.length > 0
+      result = result + ", " + describe_stack(stack)
+    end
+    result
   end
-
+  
+  def self.describe_stack(stack)
+    result = ""
+    
+    top_of_stack = stack.pop
+    if top_of_stack.is_a? Numeric
+      result = top_of_stack.to_s
+    elsif self.is_variable?(top_of_stack)
+      result = top_of_stack
+    elsif self.is_nonary_operator?(top_of_stack)
+      result = top_of_stack
+    elsif self.is_unary_operator?(top_of_stack)
+      result = top_of_stack + "(" + describe_stack(stack) + ")"
+    elsif self.is_binary_operator?(top_of_stack)
+      rhs = if self.is_binary_operator?(stack[-1], with_lower_precedence_than:top_of_stack)
+              "(" + describe_stack(stack) + ")"
+            else
+              describe_stack(stack)
+            end
+      lhs = if self.is_binary_operator?(stack[-1], with_lower_precedence_than:top_of_stack)
+              "(" + describe_stack(stack) + ")"
+            else
+              describe_stack(stack)
+            end
+      result = lhs + " " + top_of_stack + " " + rhs
+    end
+    result
+  end
+  
   def self.runProgram(program, usingVariableValues:vars)
     stack = program.collect do |item|
-      NSLog("#{item}")
       if self.is_variable?(item)
         vars[item] ? vars[item] : 0
       else
@@ -51,8 +83,36 @@ class CalculatorBrain
     item.is_a?(String) && !self.is_operator?(item)
   end
   
+  def self.is_nonary_operator?(item)
+    ["π"].include?(item)
+  end
+  
+  def self.is_unary_operator?(item)
+    ["sin", "cos", "sqrt", "+/-"].include?(item)
+  end
+  
+  def self.is_additive_operator?(item)
+    ["+", "-", ].include?(item)
+  end
+  
+  def self.is_multplicative_operator?(item)
+    ["*", "/", ].include?(item)
+  end
+  
+  def self.is_binary_operator?(item, with_lower_precedence_than:otheritem)
+    answer = self.is_additive_operator?(item) && self.is_multplicative_operator?(otheritem)
+    NSLog("is_binary_operator?: #{item} with_lower_precedence_than:#{otheritem} ans #{answer}")
+    answer
+  end
+  
+  def self.is_binary_operator?(item)
+    self.is_additive_operator?(item) ||
+    self.is_multplicative_operator?(item)
+  end
   def self.is_operator?(item)
-    ["+", "*", "-", "/", "sin", "cos", "sqrt", "+/-", "π"].include?(item)
+    self.is_nonary_operator?(item) ||
+    self.is_unary_operator?(item) ||
+    self.is_binary_operator?(item)
   end
   
   def program_stack
