@@ -33,7 +33,7 @@ class CalculatorViewController < UIViewController
     NSLog "Enter pressed"
     brain.pushOperand display.text.to_f
     @user_in_the_middle_of_entering_a_number = false
-    self.ticker.text ="#{self.ticker.text} #{self.display.text}"
+    update_ticker
   end
 
   def operationPressed(sender)
@@ -44,7 +44,7 @@ class CalculatorViewController < UIViewController
     operation = sender.currentTitle
     result = brain.performOperation(operation)
     display.text = format_result(result)
-    self.ticker.text ="#{self.ticker.text} #{sender.currentTitle}"
+    update_ticker
   end
   
   def clearPressed
@@ -71,10 +71,15 @@ class CalculatorViewController < UIViewController
     else
       result = brain.performOperation("+/-")
       self.display.text = format_result(result)
-      self.ticker.text ="#{self.ticker.text} +/-"
+      update_ticker
     end
   end
 
+  def update_ticker
+    program = brain.program
+    self.ticker.text = CalculatorBrain.descriptionOfProgram program
+  end
+  
   def change_display_sign
     if self.display.text[0] == "-"
       self.display.text = self.display.text[1..-1]

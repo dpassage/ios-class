@@ -35,7 +35,11 @@ class CalculatorBrain
     
     top_of_stack = stack.pop
     if top_of_stack.is_a? Numeric
-      result = top_of_stack.to_s
+      result = if (top_of_stack % 1) == 0
+        "%g" % top_of_stack
+      else
+        "%f" % top_of_stack
+      end
     elsif self.is_variable?(top_of_stack)
       result = top_of_stack
     elsif self.is_nonary_operator?(top_of_stack)

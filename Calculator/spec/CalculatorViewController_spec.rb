@@ -90,13 +90,13 @@ describe "CalculatorViewController" do
   it "keeps a ticker" do
     @cvb.digitPressed(@factory.title("6"))
     @cvb.decimalPressed
-    @cvb.digitPressed(@factory.title("3"))
+    @cvb.digitPressed(@factory.title("5"))
     @cvb.enterPressed
     @cvb.digitPressed(@factory.title("5"))
     @cvb.operationPressed(@factory.title("+"))
     @cvb.digitPressed(@factory.title("2"))
     @cvb.operationPressed(@factory.title("*"))
-    @cvb.ticker.text.should == " 6.3 5 + 2 *"
+    @cvb.ticker.text.should == "(6.500000 + 5) * 2"
   end
   it "has a clear button" do
     @cvb.digitPressed(@factory.title("3"))
