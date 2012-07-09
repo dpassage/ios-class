@@ -65,6 +65,9 @@ class CalculatorBrain
   end
   
   def self.runProgram(program, usingVariableValues:vars)
+    if vars == nil
+      vars = {}
+    end
     stack = program.collect do |item|
       if self.is_variable?(item)
         vars[item] ? vars[item] : 0

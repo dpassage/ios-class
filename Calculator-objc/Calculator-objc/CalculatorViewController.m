@@ -35,6 +35,8 @@
 
 - (IBAction)clearPressed {
 }
+- (IBAction)variablePressed:(UIButton *)sender {
+}
 
 - (void)viewDidUnload {
     [self setTicker:nil];

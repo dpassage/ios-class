@@ -19,6 +19,28 @@ describe "CalculatorBrain" do
     vars.include?("x").should == true
     vars.include?("y").should == true
   end
+  describe "::runProgram" do
+    it "returns 0 for an empty program" do
+      program = @cb.program
+      result = CalculatorBrain.runProgram(program)
+      result.should == 0
+    end
+  end
+
+  describe "::runProgram:usingVariableValues" do
+    before do
+      @cb.pushVariable("x")
+      @cb.pushVariable("y")
+      @cb.performOperation("+")
+
+      @program = @cb.program
+    end
+    it "works if vars is nil" do
+      result = CalculatorBrain::runProgram(@program, usingVariableValues:nil)
+      result.should == 0
+    end
+  end
+    
   describe "::variablesUsedInProgram" do
     it "returns nil if no vars used" do
       @cb.pushOperand(1)
