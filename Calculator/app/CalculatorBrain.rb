@@ -43,15 +43,14 @@ class CalculatorBrain
     elsif self.is_unary_operator?(top_of_stack)
       result = top_of_stack + "(" + describe_stack(stack) + ")"
     elsif self.is_binary_operator?(top_of_stack)
-      rhs = if self.is_binary_operator?(stack[-1], with_lower_precedence_than:top_of_stack) ||
-               (top_of_stack == "-" && self.is_additive_operator?(stack[-1])) ||
-               (top_of_stack == "/" && self.is_multplicative_operator?(stack[-1]))
-               
+      rhs = if self.operator_precedence(top_of_stack) > self.operator_precedence(stack[-1]) ||
+                 (self.operator_precedence(top_of_stack) == self.operator_precedence(stack[-1]) &&
+                  !self.is_commutative_operator?(top_of_stack))
               "(" + describe_stack(stack) + ")"
             else
               describe_stack(stack)
             end
-      lhs = if self.is_binary_operator?(stack[-1], with_lower_precedence_than:top_of_stack)
+      lhs = if self.operator_precedence(top_of_stack) > self.operator_precedence(stack[-1]) 
               "(" + describe_stack(stack) + ")"
             else
               describe_stack(stack)
@@ -95,23 +94,33 @@ class CalculatorBrain
   end
   
   def self.is_additive_operator?(item)
-    ["+", "-", ].include?(item)
+    ["+", "-" ].include?(item)
   end
   
-  def self.is_multplicative_operator?(item)
-    ["*", "/", ].include?(item)
+  def self.is_multiplicative_operator?(item)
+    ["*", "/" ].include?(item)
   end
   
-  def self.is_binary_operator?(item, with_lower_precedence_than:otheritem)
-    answer = self.is_additive_operator?(item) && self.is_multplicative_operator?(otheritem)
-    NSLog("is_binary_operator?: #{item} with_lower_precedence_than:#{otheritem} ans #{answer}")
-    answer
+  def self.is_commutative_operator?(item)
+    ["*", "+"].include?(item)
   end
   
   def self.is_binary_operator?(item)
     self.is_additive_operator?(item) ||
-    self.is_multplicative_operator?(item)
+    self.is_multiplicative_operator?(item)
   end
+
+  def self.operator_precedence(item)
+    case 
+    when self.is_multiplicative_operator?(item)
+      2
+    when self.is_additive_operator?(item)
+      1
+    else
+      3
+    end
+  end
+  
   def self.is_operator?(item)
     self.is_nonary_operator?(item) ||
     self.is_unary_operator?(item) ||
