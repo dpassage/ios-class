@@ -17,6 +17,7 @@ describe "CalculatorViewController" do
     @cvb = CalculatorViewController.alloc.init
     @cvb.display = MockUILabel.new
     @cvb.ticker = MockUILabel.new
+    @cvb.variables = MockUILabel.new
     @factory = MockSenderFactory.new
   end
   
@@ -79,13 +80,13 @@ describe "CalculatorViewController" do
   end
   it "computes π" do
     @cvb.operationPressed(@factory.title("π"))
-    @cvb.display.text.should == "3.141592"
+    @cvb.display.text.should == "3.14159"
     @cvb.operationPressed(@factory.title("π"))
     @cvb.enterPressed
     @cvb.digitPressed(@factory.title("3"))
     @cvb.operationPressed(@factory.title("*"))
     @cvb.operationPressed(@factory.title("+"))
-    @cvb.display.text.should == "12.566364"
+    @cvb.display.text.should == "12.5664"
   end
   it "keeps a ticker" do
     @cvb.digitPressed(@factory.title("6"))

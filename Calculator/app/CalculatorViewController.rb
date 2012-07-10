@@ -58,10 +58,15 @@ class CalculatorViewController < UIViewController
   
   def backspacePressed
     NSLog "Backspace Pressed"
-    self.display.text = self.display.text[0..-2]
-    if self.display.text == ""
-      self.display.text = "0"
-      @user_in_the_middle_of_entering_a_number = false
+    if @user_in_the_middle_of_entering_a_number
+      self.display.text = self.display.text[0..-2]
+      if self.display.text == ""
+        self.display.text = "0"
+        @user_in_the_middle_of_entering_a_number = false
+      end
+    else
+      brain.undo
+      update_display
     end
   end
   
@@ -134,11 +139,7 @@ class CalculatorViewController < UIViewController
   end
   
   def format_result(result)
-    if (result % 1) == 0
-      "%g" % result
-    else
-      "%f" % result
-    end
+    "%g" % result
   end
 
 end

@@ -17,6 +17,10 @@ class CalculatorBrain
     CalculatorBrain.runProgram(self.program)
   end
 
+  def undo
+    self.program_stack.pop
+  end
+  
   def reset_state
     @program_stack = []
   end
