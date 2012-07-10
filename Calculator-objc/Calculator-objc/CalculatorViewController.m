@@ -13,6 +13,7 @@
 
 @implementation CalculatorViewController
 @synthesize ticker;
+@synthesize variables;
 @synthesize display;
 
 - (IBAction)digitPressed:(UIButton *)sender {
@@ -37,9 +38,18 @@
 }
 - (IBAction)variablePressed:(UIButton *)sender {
 }
+- (IBAction)testA {
+}
+- (IBAction)testB {
+}
+- (IBAction)testC {
+}
+- (IBAction)testD {
+}
 
 - (void)viewDidUnload {
     [self setTicker:nil];
+    [self setVariables:nil];
     [super viewDidUnload];
 }
 @end

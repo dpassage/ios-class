@@ -2,6 +2,7 @@ class CalculatorViewController < UIViewController
 
   attr_accessor :display
   attr_accessor :ticker
+  attr_accessor :variables
   
   def brain
     @brain = CalculatorBrain.alloc.init unless @brain
@@ -78,6 +79,30 @@ class CalculatorViewController < UIViewController
   def variablePressed(sender)
     NSLog("variable #{sender.currentTitle} pressed")
     brain.pushVariable(sender.currentTitle)
+    update_display
+  end
+  
+  def testA
+    @test_vars = nil
+    NSLog("#{@test_vars.inspect}")
+    update_display
+  end
+  
+  def testB
+    @test_vars = {"x" => 1.0, "y" => 2.0, "foo" => 3.0}
+    NSLog("#{@test_vars.inspect}")
+    update_display
+  end
+  
+  def testC
+    @test_vars = {"x" => -1, "y" => 0, "foo" => 65432}
+    NSLog("#{@test_vars.inspect}")
+    update_display
+  end
+  
+  def testD
+    @test_vars = {"x" => 5, "y" => -6, "foo" => Math::PI}
+    NSLog("#{@test_vars.inspect}")
     update_display
   end
   
