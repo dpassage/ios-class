@@ -50,10 +50,10 @@ class CalculatorViewController < UIViewController
   
   def clearPressed
     NSLog "Clear pressed"
-    self.display.text = "0"
-    self.ticker.text = ""
     @user_in_the_middle_of_entering_a_number = false
+    @test_vars = nil
     self.brain.reset_state
+    update_display
   end
   
   def backspacePressed
@@ -111,6 +111,18 @@ class CalculatorViewController < UIViewController
     self.ticker.text = CalculatorBrain.descriptionOfProgram program
     result = CalculatorBrain.runProgram(program, usingVariableValues:@test_vars)
     self.display.text = format_result(result)
+    vars_used = CalculatorBrain.variablesUsedInProgram(program)
+    if @test_vars
+      self.variables.text = vars_used.inject("") do |string, var|
+        if @test_vars[var]
+          string += "%s = %g " % [var, @test_vars[var]]
+        else
+          string
+        end
+      end
+    else
+      self.variables.text = ""
+    end
   end
   
   def change_display_sign
