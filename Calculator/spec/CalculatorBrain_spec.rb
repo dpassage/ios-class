@@ -25,6 +25,26 @@ describe "CalculatorBrain" do
       result = CalculatorBrain.runProgram(program)
       result.should == 0
     end
+    it "returns 0 if the program is nil" do
+      program = nil
+      result = CalculatorBrain.runProgram(program)
+      result.should == 0
+    end
+    it "returns 0 if the program is a string" do
+      program = "this is not a program"
+      result = CalculatorBrain.runProgram(program)
+      result.should == 0
+    end
+    it "returns 0 if the program is a hash" do
+      program = {"this" => "is", " not a " => "program"}
+      result = CalculatorBrain.runProgram(program)
+      result.should == 0
+    end
+    it "returns 0 if the program is another CalculatorBrain" do
+      program = @cb
+      result = CalculatorBrain.runProgram(program)
+      result.should == 0
+    end
   end
 
   describe "::runProgram:usingVariableValues" do

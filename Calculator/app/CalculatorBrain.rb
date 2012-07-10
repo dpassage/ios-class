@@ -72,6 +72,7 @@ class CalculatorBrain
     if vars == nil
       vars = {}
     end
+    return 0 unless program.is_a? Array
     stack = program.collect do |item|
       if self.is_variable?(item)
         vars[item] ? vars[item] : 0
