@@ -73,6 +73,7 @@ class CalculatorBrain
       vars = {}
     end
     return 0 unless program.is_a? Array
+    return 0 unless program.length > 0
     stack = program.collect do |item|
       if self.is_variable?(item)
         vars[item] ? vars[item] : 0
@@ -148,7 +149,9 @@ class CalculatorBrain
     result = 0.0
 
     top_of_stack = stack.pop
-    if (top_of_stack.is_a? Numeric) 
+    if (top_of_stack.nil?)
+      result = Float::NAN
+    elsif (top_of_stack.is_a? Numeric) 
       result = top_of_stack
     elsif (top_of_stack.is_a? String)
       operation = top_of_stack
@@ -161,14 +164,22 @@ class CalculatorBrain
         result = pop_operand_off_program_stack(stack) - subtrahend
       elsif operation == "/"
         divisor = pop_operand_off_program_stack(stack)
-        result = pop_operand_off_program_stack(stack) / divisor unless divisor == 0
+        if divisor == 0
+          result = Float::INFINITY
+        else
+          result = pop_operand_off_program_stack(stack) / divisor
+        end
       elsif operation == "sin"
         result = Math::sin(pop_operand_off_program_stack(stack))
       elsif operation == "cos"
         result = Math::cos(pop_operand_off_program_stack(stack))
       elsif operation == "sqrt"
         operand = pop_operand_off_program_stack(stack)
-        result = Math::sqrt(operand) unless operand < 0
+        if operand < 0
+          result = Float::NAN
+        else
+          result = Math::sqrt(operand)
+        end
       elsif operation == "π"
         result = Math::PI
       elsif operation == "+/-"

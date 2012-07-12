@@ -72,11 +72,11 @@ describe "CalculatorViewController" do
     @cvb.operationPressed(@factory.title("sqrt"))
     @cvb.display.text.should == "0"
   end
-  it "returns 0 for sqrt(-1)" do
+  it "returns NaN for sqrt(-1)" do
     @cvb.digitPressed(@factory.title("1"))
     @cvb.plusMinusPressed
     @cvb.operationPressed(@factory.title("sqrt"))
-    @cvb.display.text.should == "0"
+    @cvb.display.text.should == "NaN"
   end
   it "computes π" do
     @cvb.operationPressed(@factory.title("π"))

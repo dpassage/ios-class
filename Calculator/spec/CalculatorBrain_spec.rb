@@ -45,6 +45,28 @@ describe "CalculatorBrain" do
       result = CalculatorBrain.runProgram(program)
       result.should == 0
     end
+    describe "error conditions" do
+      it "returns Inf on divide by 0" do
+        @cb.pushOperand(2)
+        @cb.pushOperand(0)
+        result = @cb.performOperation("/")
+        result.should == Float::INFINITY
+      end
+      it "returns NaN on sqrt of negative number" do
+        @cb.pushOperand(-1)
+        result = @cb.performOperation("sqrt")
+        result.should.be.nan
+      end
+      it "returns NaN if there aren't enough operands for a binary op" do
+        @cb.pushOperand(2352)
+        result = @cb.performOperation("+")
+        result.should.be.nan
+      end
+      it "returns NaN if there aren't enough operands for a unary op" do
+        result = @cb.performOperation("sin")
+        result.should.be.nan
+      end
+    end
   end
 
   describe "::runProgram:usingVariableValues" do
