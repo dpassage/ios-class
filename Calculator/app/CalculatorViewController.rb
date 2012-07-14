@@ -87,6 +87,8 @@ class CalculatorViewController < UIViewController
     update_display
   end
 
+  private
+  
   def update_display
     program = brain.program
     self.ticker.text = CalculatorBrain.descriptionOfProgram program

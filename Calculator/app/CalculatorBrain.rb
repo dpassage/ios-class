@@ -1,19 +1,19 @@
 class CalculatorBrain
 
   def program
-    self.program_stack.clone
+    program_stack.clone.freeze
   end
 
   def pushOperand(operand)
-    self.program_stack.push(operand)
+    program_stack.push(operand)
   end
 
   def pushVariable(var)
-    self.program_stack.push(var) unless CalculatorBrain.is_operator?(var)
+    program_stack.push(var) unless CalculatorBrain.is_operator?(var)
   end
   
   def performOperation(operation)
-    self.program_stack.push(operation)
+    program_stack.push(operation)
     CalculatorBrain.runProgram(self.program)
   end
 
@@ -26,7 +26,7 @@ class CalculatorBrain
   end
 
   def self.descriptionOfProgram(program)
-    stack = program.clone
+    stack = Array.new(program)
     result = describe_stack(stack)
     while stack.length > 0
       result = result + ", " + describe_stack(stack)
@@ -93,6 +93,7 @@ class CalculatorBrain
     ret.size == 0 ? nil : ret
   end
   # methods below here are private
+  private
   
   def self.is_variable?(item)
     item.is_a?(String) && !self.is_operator?(item)
