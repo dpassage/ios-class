@@ -11,8 +11,8 @@
 @interface CalculatorViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *display;
 @property (weak, nonatomic) IBOutlet UILabel *ticker;
-@property (weak, nonatomic) IBOutlet UILabel *variables;
 
 - (IBAction)digitPressed:(UIButton *)sender;
 - (IBAction)plusMinusPressed;
+
 @end
