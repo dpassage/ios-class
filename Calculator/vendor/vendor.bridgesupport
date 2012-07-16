@@ -1,0 +1,11 @@
+<?xml version='1.0'?>
+<signatures version='1.0'>
+<class name='AxesDrawer'>
+<method selector='drawAxesInRect:originAtPoint:scale:' class_method='true'>
+<arg index='0' type='{CGRect={CGPoint=ff}{CGSize=ff}}' name='bounds' declared_type='CGRect'/>
+<arg index='1' type='{CGPoint=ff}' name='axisOrigin' declared_type='CGPoint'/>
+<arg index='2' type='f' name='pointsPerUnit' declared_type='CGFloat'/>
+<retval type='v' declared_type='void'/>
+</method>
+</class>
+</signatures>
