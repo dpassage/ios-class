@@ -2,7 +2,6 @@ class CalculatorViewController < UIViewController
 
   attr_accessor :display
   attr_accessor :ticker
-  attr_accessor :variables
   
   def brain
     @brain = CalculatorBrain.alloc.init unless @brain
@@ -87,25 +86,19 @@ class CalculatorViewController < UIViewController
     update_display
   end
 
+  def prepareForSegue(segue, sender:sender)
+    if segue.identifier == "Graph"
+      segue.destinationViewController.program = brain.program
+    end
+  end
+
   private
   
   def update_display
     program = brain.program
     self.ticker.text = CalculatorBrain.descriptionOfProgram program
     result = CalculatorBrain.runProgram(program, usingVariableValues:@test_vars)
-    self.display.text = format_result(result)
-    vars_used = CalculatorBrain.variablesUsedInProgram(program)
-    if @test_vars
-      self.variables.text = vars_used.inject("") do |string, var|
-        if @test_vars[var]
-          string += "%s = %g " % [var, @test_vars[var]]
-        else
-          string
-        end
-      end
-    else
-      self.variables.text = ""
-    end
+    self.display.text = format_result(result) 
   end
 
   def change_display_sign

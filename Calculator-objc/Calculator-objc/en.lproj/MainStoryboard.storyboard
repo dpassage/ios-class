@@ -415,7 +415,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="zvi-ya-0c8" kind="push" id="Pue-ps-zb2"/>
+                                    <segue destination="zvi-ya-0c8" kind="push" identifier="Graph" id="Pue-ps-zb2"/>
                                 </connections>
                             </button>
                         </subviews>
