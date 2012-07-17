@@ -6,6 +6,7 @@ class GraphViewController < UIViewController
   def setGraph(graph)
     @graph = graph
     @graph.data_source = self
+    @graph.addGestureRecognizer(UIPinchGestureRecognizer.alloc.initWithTarget(@graph, action: "pinch:"))
   end
 
   def viewDidLoad
