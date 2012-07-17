@@ -1,0 +1,2 @@
+class GraphView < UIView
+end
