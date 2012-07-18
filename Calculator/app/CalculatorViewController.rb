@@ -92,6 +92,11 @@ class CalculatorViewController < UIViewController
     end
   end
 
+  def shouldAutorotateToInterfaceOrientation(interfaceOrientation)
+    [UIInterfaceOrientationPortrait, 
+     UIInterfaceOrientationPortraitUpsideDown].include? interfaceOrientation
+  end
+
   private
   
   def update_display
