@@ -1,0 +1,29 @@
+<?xml version='1.0'?>
+<signatures version='1.0'>
+<string_constant nsstring='true' name='FLICKR_LATITUDE' value='latitude'/>
+<string_constant nsstring='true' name='FLICKR_LONGITUDE' value='longitude'/>
+<string_constant nsstring='true' name='FLICKR_PHOTO_DESCRIPTION' value='description._content'/>
+<string_constant nsstring='true' name='FLICKR_PHOTO_ID' value='id'/>
+<string_constant nsstring='true' name='FLICKR_PHOTO_OWNER' value='ownername'/>
+<string_constant nsstring='true' name='FLICKR_PHOTO_TITLE' value='title'/>
+<string_constant nsstring='true' name='FLICKR_PLACE_NAME' value='_content'/>
+<string_constant nsstring='true' name='FlickrAPIKey' value=''/>
+<enum name='FlickrPhotoFormatLarge' value='2'/>
+<enum name='FlickrPhotoFormatOriginal' value='64'/>
+<enum name='FlickrPhotoFormatSquare' value='1'/>
+<class name='FlickrFetcher'>
+<method class_method='true' selector='photosInPlace:maxResults:'>
+<arg index='0' name='place' declared_type='NSDictionary*' type='@'/>
+<arg index='1' name='maxResults' declared_type='int' type='i'/>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method class_method='true' selector='topPlaces'>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method class_method='true' selector='urlForPhoto:format:'>
+<arg index='0' name='photo' declared_type='NSDictionary*' type='@'/>
+<arg index='1' name='format' declared_type='FlickrPhotoFormat' type='i'/>
+<retval declared_type='NSURL*' type='@'/>
+</method>
+</class>
+</signatures>
