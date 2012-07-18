@@ -45,6 +45,33 @@ class GraphViewController < UIViewController
   def shouldAutorotateToInterfaceOrientation(interfaceOrientation)
     true
   end
+  
+  def awakeFromNib
+    super
+    splitViewController.delegate = self if splitViewController
+  end
+
+  # methods from UISplitViewControllerDelegate protocol
+  def    splitViewController(svc, 
+    shouldHideViewController:vc, 
+               inOrientation:orientation)
+    [UIInterfaceOrientationPortrait, 
+     UIInterfaceOrientationPortraitUpsideDown].include?(orientation)
+  end
+
+  def splitViewController(svc, 
+   willHideViewController:aViewController,
+        withBarButtonItem:barButtonItem, 
+     forPopoverController:pc)
+    barButtonItem.title = "Calculator"
+    self.split_view_bar_button_item = barButtonItem
+  end
+
+  def    splitViewController(svc, 
+      willShowViewController:aViewController, 
+   invalidatingBarButtonItem:button)
+    self.split_view_bar_button_item = nil
+  end
 
   def y_value_for_x(x)
     CalculatorBrain.runProgram(program, usingVariableValues:{ "x" => x })
