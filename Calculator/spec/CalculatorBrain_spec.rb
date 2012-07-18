@@ -203,5 +203,8 @@ describe "CalculatorBrain" do
       program = @cb.program
       CalculatorBrain.descriptionOfProgram(program).should == "3 / (4 * 5)"
     end
+    it "returns empty string for nil" do
+      CalculatorBrain.descriptionOfProgram(nil).should == ""
+    end
   end
 end

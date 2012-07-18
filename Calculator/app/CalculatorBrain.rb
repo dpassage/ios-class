@@ -26,6 +26,7 @@ class CalculatorBrain
   end
 
   def self.descriptionOfProgram(program)
+    return "" unless program
     stack = Array.new(program)
     result = describe_stack(stack)
     while stack.length > 0
