@@ -9,7 +9,7 @@ class GraphViewController < UIViewController
 
   def program=(program)
     @program = program
-    graph.setNeedsDisplay
+    graph.setNeedsDisplay if graph
   end
 
   def split_view_bar_button_item=(button)
