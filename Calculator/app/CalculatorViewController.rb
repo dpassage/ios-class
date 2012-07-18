@@ -52,6 +52,9 @@ class CalculatorViewController < UIViewController
     @user_in_the_middle_of_entering_a_number = false
     @test_vars = nil
     self.brain.reset_state
+    if splitViewController
+      splitViewController.viewControllers.lastObject.program = nil
+    end
     update_display
   end
   
