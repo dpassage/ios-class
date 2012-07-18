@@ -5,6 +5,12 @@ class CGPoint
     ret.y = self.y + point.y
     ret
   end
+  def -(point)
+    ret = CGPoint.new
+    ret.x = self.x - point.x
+    ret.y = self.y - point.y
+    ret
+  end
 end
 
 class GraphView < UIView
@@ -24,20 +30,27 @@ class GraphView < UIView
     end
   end
 
+  def middle
+    ret = CGPoint.new
+    ret.x = bounds.origin.x + (bounds.size.width / 2)
+    ret.y = bounds.origin.y + (bounds.size.height / 2)
+    ret
+  end
+
   def graph_origin
-    if @graph_origin
-      @graph_origin
+    if @origin_offset
+      @origin_offset + middle
     else
-      @graph_origin = CGPoint.new
-      @graph_origin.x = bounds.origin.x + (bounds.size.width / 2)
-      @graph_origin.y = bounds.origin.y + (bounds.size.height / 2)
-      @graph_origin
+      @origin_offset = CGPoint.new
+      @origin_offset.x = 0
+      @origin_offset.y = 0
+      middle
     end
   end
 
   def graph_origin=(point)
-    if @graph_origin != point
-      @graph_origin = point
+    if @origin_offset + middle != point
+      @origin_offset = point - middle
       setNeedsDisplay
     end
   end
@@ -65,7 +78,7 @@ class GraphView < UIView
   def tap(gesture)
     self.graph_origin = gesture.locationInView(self)
   end
-  
+
   def drawRect(rect)
     # drawAxesInRect:originAtmiddle:scale:
     AxesDrawer.drawAxesInRect(bounds, originAtPoint:self.graph_origin, scale:scale)

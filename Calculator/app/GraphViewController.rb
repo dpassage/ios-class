@@ -18,6 +18,10 @@ class GraphViewController < UIViewController
     graphLabel.text = CalculatorBrain.descriptionOfProgram(program)
   end
 
+  def shouldAutorotateToInterfaceOrientation(interfaceOrientation)
+    true
+  end
+  
   def y_value_for_x(x)
     CalculatorBrain.runProgram(program, usingVariableValues:{ "x" => x })
   end
