@@ -94,13 +94,14 @@ class GraphView < UIView
     y_coord = self.graph_origin.y - (scale * y_value)
     CGContextMoveToPoint(context, x_coord, y_coord)
 
-    x_coord += 1
+    step = 1 / contentScaleFactor
+    x_coord += step
     while x_coord < bounds.origin.x + bounds.size.width
       x_value = (x_coord - self.graph_origin.x) / scale
       y_value = data_source.y_value_for_x(x_value)
       y_coord = self.graph_origin.y - (scale * y_value)
       CGContextAddLineToPoint(context, x_coord, y_coord)
-      x_coord += 1
+      x_coord += step
     end
     CGContextStrokePath(context)
 
