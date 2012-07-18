@@ -20,12 +20,17 @@ class GraphView < UIView
   DEFAULT_SCALE = 10.0
 
   def scale
-    @scale ||= DEFAULT_SCALE
+    @scale ||= NSUserDefaults.standardUserDefaults.floatForKey("scale")
+    if @scale == 0.0
+      @scale = DEFAULT_SCALE
+    end
+    @scale
   end
 
   def scale=(s)
     if @scale != s
       @scale = s
+      NSUserDefaults.standardUserDefaults.setFloat(@scale, forKey:"scale")
       setNeedsDisplay
     end
   end
