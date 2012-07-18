@@ -14,4 +14,5 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *graphLabel;
 @property (weak, nonatomic) IBOutlet GraphView *graph;
+@property (weak, nonatomic) IBOutlet UIToolbar *tool_bar;
 @end

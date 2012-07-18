@@ -15,6 +15,7 @@
 @implementation GraphViewController
 @synthesize graphLabel;
 @synthesize graph;
+@synthesize tool_bar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,6 +36,7 @@
 {
     [self setGraph:nil];
     [self setGraphLabel:nil];
+    [self setTool_bar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

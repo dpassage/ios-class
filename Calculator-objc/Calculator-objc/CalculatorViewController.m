@@ -21,6 +21,9 @@
 - (IBAction)plusMinusPressed {
 }
 
+- (IBAction)graphPressed {
+}
+
 - (IBAction)decimalPressed {
 }
 

@@ -14,5 +14,6 @@
 
 - (IBAction)digitPressed:(UIButton *)sender;
 - (IBAction)plusMinusPressed;
+- (IBAction)graphPressed;
 
 @end

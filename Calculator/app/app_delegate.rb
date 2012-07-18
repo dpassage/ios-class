@@ -1,6 +1,10 @@
 class AppDelegate
   def application(application, didFinishLaunchingWithOptions:launchOptions)
-    storyboard = UIStoryboard.storyboardWithName("MainStoryboard", bundle: NSBundle.mainBundle)
+    if UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad
+      storyboard = UIStoryboard.storyboardWithName("iPadStoryboard", bundle: NSBundle.mainBundle)
+    else
+      storyboard = UIStoryboard.storyboardWithName("MainStoryboard", bundle: NSBundle.mainBundle)
+    end
     view_controller = storyboard.instantiateViewControllerWithIdentifier("Main")
 
     @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)

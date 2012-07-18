@@ -86,6 +86,15 @@ class CalculatorViewController < UIViewController
     update_display
   end
 
+  def graphPressed
+    if splitViewController
+      NSLog("Tell graph controller what to do")
+      splitViewController.viewControllers.lastObject.program = brain.program
+    else
+      NSLog("Segue to graph")
+    end
+  end
+
   def prepareForSegue(segue, sender:sender)
     if segue.identifier == "Graph"
       segue.destinationViewController.program = brain.program
@@ -93,8 +102,45 @@ class CalculatorViewController < UIViewController
   end
 
   def shouldAutorotateToInterfaceOrientation(interfaceOrientation)
+    splitViewController ||
     [UIInterfaceOrientationPortrait, 
-     UIInterfaceOrientationPortraitUpsideDown].include? interfaceOrientation
+     UIInterfaceOrientationPortraitUpsideDown].include?(interfaceOrientation)
+  end
+
+  
+  def awakeFromNib
+    super
+    splitViewController.delegate = self if splitViewController
+  end
+
+  def split_view_bar_button_presenter
+    detail_vc = splitViewController.viewControllers.lastObject
+    if !detail_vc.respond_to?(:split_view_bar_button_item)
+      detail_vc = nil
+    end
+    detail_vc
+  end
+
+  # methods from UISplitViewControllerDelegate protocol
+  def    splitViewController(svc, 
+    shouldHideViewController:vc, 
+               inOrientation:orientation)
+    split_view_bar_button_presenter ?  [UIInterfaceOrientationPortrait, 
+     UIInterfaceOrientationPortraitUpsideDown].include?(orientation) : false
+  end
+
+  def splitViewController(svc, 
+   willHideViewController:aViewController,
+        withBarButtonItem:barButtonItem, 
+     forPopoverController:pc)
+    barButtonItem.title = self.title
+    split_view_bar_button_presenter.split_view_bar_button_item = barButtonItem if split_view_bar_button_presenter
+  end
+
+  def    splitViewController(svc, 
+      willShowViewController:aViewController, 
+   invalidatingBarButtonItem:button)
+    split_view_bar_button_presenter.split_view_bar_button_item = nil if split_view_bar_button_presenter
   end
 
   private
