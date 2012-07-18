@@ -45,6 +45,11 @@ class GraphView < UIView
   def graph_origin
     if @origin_offset
       @origin_offset + middle
+    elsif NSUserDefaults.standardUserDefaults.boolForKey("originSet")
+      @origin_offset = CGPoint.new
+      @origin_offset.x = NSUserDefaults.standardUserDefaults.floatForKey("origin.x")
+      @origin_offset.y = NSUserDefaults.standardUserDefaults.floatForKey("origin.y")
+      @origin_offset + middle
     else
       @origin_offset = CGPoint.new
       @origin_offset.x = 0
@@ -56,6 +61,9 @@ class GraphView < UIView
   def graph_origin=(point)
     if @origin_offset + middle != point
       @origin_offset = point - middle
+      NSUserDefaults.standardUserDefaults.setBool(true, forKey:"originSet")
+      NSUserDefaults.standardUserDefaults.setFloat(@origin_offset.x, forKey:"origin.x")
+      NSUserDefaults.standardUserDefaults.setFloat(@origin_offset.y, forKey:"origin.y")
       setNeedsDisplay
     end
   end
