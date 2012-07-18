@@ -8,6 +8,9 @@ class GraphViewController < UIViewController
     @graph.data_source = self
     @graph.addGestureRecognizer(UIPinchGestureRecognizer.alloc.initWithTarget(@graph, action: "pinch:"))
     @graph.addGestureRecognizer(UIPanGestureRecognizer.alloc.initWithTarget(@graph, action:"pan:"))
+    tapGesture = UITapGestureRecognizer.alloc.initWithTarget(@graph, action:"tap:")
+    tapGesture.numberOfTapsRequired = 3
+    @graph.addGestureRecognizer(tapGesture)
   end
 
   def viewDidLoad

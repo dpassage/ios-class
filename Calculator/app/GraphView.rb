@@ -62,6 +62,10 @@ class GraphView < UIView
     end
   end
 
+  def tap(gesture)
+    self.graph_origin = gesture.locationInView(self)
+  end
+  
   def drawRect(rect)
     # drawAxesInRect:originAtmiddle:scale:
     AxesDrawer.drawAxesInRect(bounds, originAtPoint:self.graph_origin, scale:scale)
