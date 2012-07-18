@@ -17,7 +17,6 @@ describe "CalculatorViewController" do
     @cvb = CalculatorViewController.alloc.init
     @cvb.display = MockUILabel.new
     @cvb.ticker = MockUILabel.new
-    @cvb.variables = MockUILabel.new
     @factory = MockSenderFactory.new
   end
   
