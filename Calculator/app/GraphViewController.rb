@@ -10,6 +10,7 @@ class GraphViewController < UIViewController
   def program=(program)
     @program = program
     graph.setNeedsDisplay if graph
+    graphLabel.text = CalculatorBrain.descriptionOfProgram(program) if graphLabel
   end
 
   def split_view_bar_button_item=(button)
@@ -19,7 +20,7 @@ class GraphViewController < UIViewController
         tool_bar_items.delete @split_view_bar_button_item
       end
       if button
-        tool_bar_items.push button
+        tool_bar_items.unshift button
       end
       self.tool_bar.items = tool_bar_items
       @split_view_bar_button_item = button

@@ -329,13 +329,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="right" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="Fpa-9D-cgV">
-                                <rect key="frame" x="20" y="419" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xOP-WV-GQs">
                                 <rect key="frame" x="20" y="48" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -396,13 +389,6 @@
                                     <action selector="variablePressed:" destination="2" eventType="touchUpInside" id="A6b-Th-rCB"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="right" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="LeK-G2-eP7">
-                                <rect key="frame" x="23" y="419" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4eQ-nj-NOm">
                                 <rect key="frame" x="90" y="318" width="69" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -421,7 +407,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Xcw-0s-gzY"/>
+                    <navigationItem key="navigationItem" title="Calculator" id="Xcw-0s-gzY"/>
                     <connections>
                         <outlet property="display" destination="ShR-Md-miv" id="qgY-eF-oD4"/>
                         <outlet property="ticker" destination="1jR-Re-iNC" id="Puq-Fa-qJI"/>
@@ -457,7 +443,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="rXz-76-7KB"/>
+                    <navigationItem key="navigationItem" title="Graph" id="rXz-76-7KB"/>
                     <connections>
                         <outlet property="graph" destination="4sm-id-sva" id="cFz-50-UmJ"/>
                         <outlet property="graphLabel" destination="b0I-lu-Trw" id="Snb-at-qEa"/>
@@ -490,6 +476,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CalculatorViewController.h"/>
             <relationships>
                 <relationship kind="action" name="digitPressed:" candidateClass="UIButton"/>
+                <relationship kind="action" name="graphPressed"/>
                 <relationship kind="action" name="plusMinusPressed"/>
                 <relationship kind="outlet" name="display" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="ticker" candidateClass="UILabel"/>
@@ -503,6 +490,7 @@
             <relationships>
                 <relationship kind="outlet" name="graph" candidateClass="GraphView"/>
                 <relationship kind="outlet" name="graphLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tool_bar" candidateClass="UIToolbar"/>
             </relationships>
         </class>
     </classes>

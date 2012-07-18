@@ -358,13 +358,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="right" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="0DH-ZO-TJd">
-                                <rect key="frame" x="20" y="419" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ptu-hN-LTw">
                                 <rect key="frame" x="20" y="48" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -425,13 +418,6 @@
                                     <action selector="variablePressed:" destination="ZuG-G6-ZV7" eventType="touchUpInside" id="CJ2-Oo-dum"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="right" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="Wuu-3C-qr0">
-                                <rect key="frame" x="23" y="419" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bIC-vz-3mY">
                                 <rect key="frame" x="90" y="318" width="69" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -450,7 +436,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="4Fk-WO-itz"/>
+                    <navigationItem key="navigationItem" title="Calculator" id="4Fk-WO-itz"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <connections>
                         <outlet property="display" destination="MyY-kW-rYg" id="lfe-Vf-luE"/>
@@ -485,18 +471,22 @@
                                 </accessibility>
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="mIJ-dB-xD1">
-                                <rect key="frame" x="0.0" y="0.0" width="991" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="5Mo-rh-0Hx"/>
+                                    <barButtonItem title="Graph" style="plain" id="SfF-Dl-ueq"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="7j2-PS-aa2"/>
+                                </items>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="KHP-2o-Dre"/>
+                    <navigationItem key="navigationItem" title="Graph" id="KHP-2o-Dre"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <connections>
                         <outlet property="graph" destination="J0g-is-Xdd" id="2p8-F1-yvr"/>
-                        <outlet property="graphLabel" destination="kK7-RI-lhd" id="RXX-ML-YB7"/>
+                        <outlet property="graphLabel" destination="kK7-RI-lhd" id="9xv-td-EXO"/>
                         <outlet property="tool_bar" destination="mIJ-dB-xD1" id="GPe-T5-xq3"/>
                     </connections>
                 </viewController>
