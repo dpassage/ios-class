@@ -10,7 +10,7 @@ class PlacePhotosViewController < UITableViewController
   end
 
   def photos
-    @photos ||= FlickrFetcher.photosInPlace(self.place, maxResults:50)
+    @photos ||= FlickrFetcher.photosInPlace(self.place, maxResults:50).map { |p| FlickrPhoto.new(p) }
   end
 
   def init
@@ -34,10 +34,9 @@ class PlacePhotosViewController < UITableViewController
       cell = UITableViewCell.alloc.initWithStyle(UITableViewCellStyleSubtitle,
                                  reuseIdentifier:"PhotoCell")
     end    
-    place = self.top_places[indexPath.row]["_content"].split(", ", 2)
-    cell.textLabel.text = place[0]
-    cell.detailTextLabel.text = place[1]
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator
+    photo = self.photos[indexPath.row]
+    cell.textLabel.text = photo.title
+    cell.detailTextLabel.text = photo.description
     cell
   end
 
