@@ -14,15 +14,19 @@ class PhotoViewController < UIViewController
   #
   def viewWillAppear(animated)
     super
-    @image_view = UIImageView.alloc.initWithImage(self.photo.image)
-    self.view.contentSize = @image_view.bounds.size
-    self.view.minimumZoomScale=0.5
-    self.view.maximumZoomScale=6.0
 
+    @image_view = UIImageView.alloc.initWithImage(self.photo.image)
     self.view.addSubview(@image_view)
     self.view.delegate = self
-    self.view.zoomToRect(@image_view.bounds, animated:true)
+    self.view.contentSize = @image_view.bounds.size
 
+    x_ratio = self.view.bounds.size.width / @image_view.bounds.size.width
+    NSLog("x_ratio is %@", x_ratio)
+    y_ratio = self.view.bounds.size.height / @image_view.bounds.size.height
+    NSLog("y_ratio is %@", y_ratio)
+    self.view.minimumZoomScale=[x_ratio, y_ratio].min
+    self.view.maximumZoomScale=6.0
+    self.view.zoomScale = [x_ratio, y_ratio].max
     self.title = self.photo.title
   end
   # override loadview to set self.view to a scrollview
