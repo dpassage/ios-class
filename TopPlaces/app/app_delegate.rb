@@ -1,7 +1,7 @@
 class AppDelegate
   def application(application, didFinishLaunchingWithOptions:launchOptions)
     return true if RUBYMOTION_ENV == 'test'
-    tab_controller = UITabBarController.alloc.init
+    tab_controller = RotatingTabController.alloc.init
     top_places_vc = TopPlacesViewController.alloc.init
     top_places_vc.title = "Top Places"
     top_places_navc = UINavigationController.alloc.initWithRootViewController(top_places_vc)
