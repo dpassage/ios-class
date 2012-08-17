@@ -6,7 +6,15 @@ class FlickrPhoto
   end
 
   def title
-    @photo_dict["title"]
+    if @photo_dict["title"] == ""
+      if description == ""
+        "Unknown"
+      else
+        description
+      end
+    else
+      @photo_dict["title"]
+    end
   end
 
   def description
