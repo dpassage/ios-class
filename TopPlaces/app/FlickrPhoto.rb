@@ -21,4 +21,11 @@ class FlickrPhoto
     @photo_dict["description"]["_content"]
   end
 
+  def image
+    return @image if @image
+
+    url = FlickrFetcher.urlForPhoto(@photo_dict, format:FlickrPhotoFormatLarge)
+    data = NSData.dataWithContentsOfURL(url)
+    @image = UIImage.imageWithData(data)
+  end
 end

@@ -46,7 +46,7 @@ class PlacePhotosViewController < UITableViewController
     NSLog("Row %@ was tapped", indexPath.row)
     # prepare the new vc
     pvc = PhotoViewController.alloc.init
-    pvc.photo = FlickrPhoto.new(self.photos[indexPath.row])
+    pvc.photo = self.photos[indexPath.row]
     self.navigationController.pushViewController(pvc, animated:true)
     # push it onto the stack
   end
