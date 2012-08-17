@@ -18,8 +18,10 @@ class PhotoViewController < UIViewController
     self.view.contentSize = @image_view.bounds.size
     self.view.minimumZoomScale=0.5
     self.view.maximumZoomScale=6.0
+
     self.view.addSubview(@image_view)
     self.view.delegate = self
+    self.view.zoomToRect(@image_view.bounds, animated:true)
 
     self.title = self.photo.title
   end
