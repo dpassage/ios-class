@@ -1,16 +1,8 @@
-class PlacePhotosViewController < UITableViewController
+class RecentPhotosViewController < UITableViewController
 
-
-  def place=(place)
-    @place = place
-  end
-
-  def place
-    @place
-  end
 
   def photos
-    @photos ||= FlickrFetcher.photosInPlace(self.place, maxResults:50).map { |p| FlickrPhoto.new(p) }
+    FlickrPhoto.get_photo_history
   end
 
   def init
@@ -18,7 +10,11 @@ class PlacePhotosViewController < UITableViewController
   end
 
   def viewDidLoad
-    self.title = self.place["_content"].split(",", 2)[0]
+    self.title = "Recents"
+  end
+
+  def viewWillAppear(animated)
+    self.tableView.reloadData
   end
 
   # UITableViewDataSource protocol methods

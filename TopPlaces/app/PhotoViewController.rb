@@ -4,6 +4,7 @@ class PhotoViewController < UIViewController
   end
   def photo=(newphoto)
     @photo = newphoto
+    newphoto.save_to_history
   end
 
   def shouldAutorotateToInterfaceOrientation(orientation)
