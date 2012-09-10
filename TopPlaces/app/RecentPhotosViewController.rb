@@ -14,6 +14,7 @@ class RecentPhotosViewController < UITableViewController
   end
 
   def viewWillAppear(animated)
+    super
     self.tableView.reloadData
   end
 
