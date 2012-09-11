@@ -18,6 +18,18 @@ class TopPlacesViewController < ItemListViewController
     self.top_places
   end
 
+  def reload_items
+    queue = Dispatch::Queue.new("FlickrFetcher")
+    queue.async {
+      place_array = FlickrPlace.top_places
+      Dispatch::Queue.main.async {
+            self.top_places = place_array
+            refresh_done
+      }
+    }
+
+  end
+
   def cell_name
     "Top Place Cell"
   end
@@ -25,14 +37,8 @@ class TopPlacesViewController < ItemListViewController
   def viewWillAppear(animated)
     super
 
-    queue = Dispatch::Queue.new("FlickrFetcher")
-    queue.async {
-      place_array = FlickrPlace.top_places
-      Dispatch::Queue.main.async {
-            self.top_places = place_array.sort { |a,b| a.title <=> b.title }
-      }
-    }
-  end
+    self.reload_items
+   end
 
   def viewDidLoad
     self.title = "Top Places"

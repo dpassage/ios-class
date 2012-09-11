@@ -48,7 +48,13 @@
                             <outlet property="delegate" destination="aY4-71-rKq" id="5Jg-1P-YzO"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="kFq-fA-GbX"/>
+                    <navigationItem key="navigationItem" id="kFq-fA-GbX">
+                        <barButtonItem key="rightBarButtonItem" title="Refresh" id="c3Q-Ho-I5R">
+                            <connections>
+                                <action selector="refresh:" destination="aY4-71-rKq" id="Veg-ec-WZ0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1010" y="-168"/>
@@ -97,7 +103,13 @@
                             <outlet property="delegate" destination="d6e-cj-I4n" id="tUG-5p-FZ4"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="EtT-9V-jd5"/>
+                    <navigationItem key="navigationItem" id="EtT-9V-jd5">
+                        <barButtonItem key="rightBarButtonItem" title="Refresh" id="5g4-z1-ahI">
+                            <connections>
+                                <action selector="refresh:" destination="d6e-cj-I4n" id="dXA-uT-mfH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1460" y="-168"/>
@@ -240,8 +252,11 @@
         </scene>
     </scenes>
     <classes>
-        <class className="PhotoListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoListViewController.h"/>
+        <class className="ItemListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemListViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refresh:"/>
+            </relationships>
         </class>
         <class className="PhotoViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoViewController.h"/>
@@ -255,7 +270,7 @@
                 <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
             </relationships>
         </class>
-        <class className="PlacePhotosViewController" superclassName="PhotoListViewController">
+        <class className="PlacePhotosViewController" superclassName="ItemListViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PlacePhotosViewController.h"/>
             <relationships>
                 <relationship kind="action" name="photos"/>

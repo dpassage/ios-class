@@ -11,7 +11,7 @@ class PlacePhotosViewController < ItemListViewController
   def item=(place)
     self.place = place
   end
-  
+
   def items
     @items ||= []
   end
@@ -23,6 +23,18 @@ class PlacePhotosViewController < ItemListViewController
     end
   end
 
+  def reload_items
+    queue = Dispatch::Queue.new("FlickrFetcher")
+    queue.async {
+      photo_array = self.place.photos(50)
+      Dispatch::Queue.main.async {
+        self.items = photo_array
+        refresh_done
+      }
+    }
+
+  end
+
   def cell_name
     "Photo Cell"
   end
@@ -30,13 +42,7 @@ class PlacePhotosViewController < ItemListViewController
   def viewWillAppear(animated)
     super
 
-    queue = Dispatch::Queue.new("FlickrFetcher")
-    queue.async {
-      photo_array = self.place.photos(50)
-      Dispatch::Queue.main.async {
-        self.items = photo_array
-      }
-    }
+    reload_items
   end
 
   def viewDidLoad
