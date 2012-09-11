@@ -18,7 +18,6 @@ class PhotoViewController < UIViewController
     queue.async {
       image = self.photo.image
       Dispatch::Queue.main.async {
-
         app_frame = UIScreen.mainScreen.applicationFrame
         scroll_view = UIScrollView.alloc.initWithFrame(app_frame)
         scroll_view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin |
