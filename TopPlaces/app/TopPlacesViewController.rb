@@ -2,10 +2,28 @@ class TopPlacesViewController < UITableViewController
 
   def top_places
     unless @top_places
-      place_array = FlickrFetcher.topPlaces
-      @top_places = place_array.sort { |a,b| a["_content"] <=> b["_content"] }
+      @top_places = []
     end
     @top_places
+  end
+
+  def top_places=(places)
+    if (@top_places != places)
+      @top_places = places
+      self.tableView.reloadData if (self.tableView.window) 
+    end
+  end
+
+  def viewWillAppear(animated)
+    super
+
+    queue = Dispatch::Queue.new("FlickrFetcher")
+    queue.async {
+      place_array = FlickrFetcher.topPlaces
+      Dispatch::Queue.main.async {
+            self.top_places = place_array.sort { |a,b| a["_content"] <=> b["_content"] }
+      }
+    }
   end
 
   def init
