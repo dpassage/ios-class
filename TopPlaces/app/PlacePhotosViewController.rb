@@ -1,4 +1,4 @@
-class PlacePhotosViewController < PhotoListViewController
+class PlacePhotosViewController < ItemListViewController
 
   def place=(place)
     @place = place
@@ -8,15 +8,23 @@ class PlacePhotosViewController < PhotoListViewController
     @place
   end
 
-  def photos
-    @photos ||= []
+  def item=(place)
+    self.place = place
+  end
+  
+  def items
+    @items ||= []
   end
 
-  def photos=(photos)
-    if (@photos != photos)
-      @photos = photos
+  def items=(items)
+    if (@items != items)
+      @items = items
       self.tableView.reloadData if (self.tableView.window)
     end
+  end
+
+  def cell_name
+    "Photo Cell"
   end
 
   def viewWillAppear(animated)
@@ -26,7 +34,7 @@ class PlacePhotosViewController < PhotoListViewController
     queue.async {
       photo_array = self.place.photos(50)
       Dispatch::Queue.main.async {
-        self.photos = photo_array
+        self.items = photo_array
       }
     }
   end

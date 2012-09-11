@@ -4,11 +4,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
     </dependencies>
     <scenes>
-        <!--Top Places View Controller-->
+        <!--Top Places View Controller - Top Places-->
         <scene sceneID="4zt-DZ-OUN">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="es1-if-cFq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="aY4-71-rKq" customClass="TopPlacesViewController" sceneMemberID="viewController">
+                <tableViewController title="Top Places" id="aY4-71-rKq" customClass="TopPlacesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="qFN-eb-S6Z">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -151,11 +151,11 @@
             </objects>
             <point key="canvasLocation" x="-38" y="115"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Controller - Top Places-->
         <scene sceneID="LBL-lU-6Pg">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PEc-UL-noA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController id="wR1-62-z7z" sceneMemberID="viewController">
+                <navigationController title="Top Places" id="wR1-62-z7z" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="topRated" id="Jjh-cO-zqT"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PHW-R1-Iq4">

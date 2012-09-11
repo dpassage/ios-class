@@ -4,6 +4,10 @@ class PhotoViewController < UIViewController
   outlet :spinner, UIActivityIndicatorView
   outlet :scroll_view, UIScrollView
 
+  def item=(newphoto)
+    self.photo = newphoto
+  end
+  
   def photo
     @photo
   end

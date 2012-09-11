@@ -16,4 +16,8 @@ class FlickrPlace
   def photos(limit)
     FlickrFetcher.photosInPlace(@place_dict, maxResults:limit).map { |p| FlickrPhoto.new(p) }
   end
+
+  def self.top_places
+    FlickrFetcher.topPlaces.map { |p| FlickrPlace.new(p) }.sort { |a,b| a.title <=> b.title }
+  end
 end

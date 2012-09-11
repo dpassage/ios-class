@@ -1,7 +1,11 @@
-class RecentPhotosViewController < PhotoListViewController
+class RecentPhotosViewController < ItemListViewController
 
-  def photos
+  def items
     FlickrPhoto.get_photo_history
+  end
+
+  def cell_name
+    "Photo Cell"
   end
 
   def viewDidLoad
