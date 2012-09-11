@@ -8,13 +8,13 @@ class RecentPhotosViewController < ItemListViewController
     "Photo Cell"
   end
 
-  def viewDidLoad
-    self.title = "Recents"
+  def reload_items
+    self.tableView.reloadData
+    refresh_done
   end
 
-  def viewWillAppear(animated)
-    super
-    self.tableView.reloadData
+  def viewDidLoad
+    self.title = "Recents"
   end
 
 end

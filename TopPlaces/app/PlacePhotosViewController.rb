@@ -40,12 +40,6 @@ class PlacePhotosViewController < ItemListViewController
     "Photo Cell"
   end
 
-  def viewWillAppear(animated)
-    super
-
-    refresh(nil)
-  end
-
   def viewDidLoad
     self.title = self.place.title
   end

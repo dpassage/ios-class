@@ -4,6 +4,7 @@ class ItemListViewController < UITableViewController
 
   def refresh(sender)
     @button = self.navigationItem.rightBarButtonItem
+    NSLog("@button is %@", @button)
     NSLog("%@ sent refresh", sender)
     spinner = UIActivityIndicatorView.alloc.initWithActivityIndicatorStyle(UIActivityIndicatorViewStyleGray)
     NSLog("start animating")
@@ -15,12 +16,18 @@ class ItemListViewController < UITableViewController
   end
 
   def refresh_done
-    self.navigationItem.rightBarButtonItem = @button if @button
+    self.navigationItem.rightBarButtonItem = @button
   end
 
   def prepareForSegue(segue, sender: sender)
     indexPath = self.tableView.indexPathForCell sender
     segue.destinationViewController.item = self.items[indexPath.row]
+  end
+
+  def viewWillAppear(animated)
+    super
+
+    refresh(nil)
   end
 
   # UITableViewDataSource protocol methods
