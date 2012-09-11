@@ -43,7 +43,7 @@ class PlacePhotosViewController < ItemListViewController
   def viewWillAppear(animated)
     super
 
-    reload_items
+    refresh(nil)
   end
 
   def viewDidLoad

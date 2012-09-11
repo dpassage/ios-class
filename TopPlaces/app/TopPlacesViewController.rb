@@ -38,7 +38,7 @@ class TopPlacesViewController < ItemListViewController
   def viewWillAppear(animated)
     super
 
-    self.reload_items
+    refresh(nil)
    end
 
   def viewDidLoad
