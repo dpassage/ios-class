@@ -5,3 +5,4 @@ resources/*.momd
 resources/*.storyboardc
 vendor/build*
 .dat*
+ui.xcodeproj

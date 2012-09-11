@@ -1,7 +1,8 @@
 class PhotoListViewController < UITableViewController
 
-  def init
-     initWithStyle UITableViewStylePlain
+  def prepareForSegue(segue, sender: sender)
+    indexPath = self.tableView.indexPathForCell sender
+    segue.destinationViewController.photo = self.photos[indexPath.row]
   end
 
   # UITableViewDataSource protocol methods
@@ -15,21 +16,12 @@ class PhotoListViewController < UITableViewController
     cell = self.tableView.dequeueReusableCellWithIdentifier("Photo Cell")
     if (!cell) 
       cell = UITableViewCell.alloc.initWithStyle(UITableViewCellStyleSubtitle,
-                                 reuseIdentifier:"PhotoCell")
+                                 reuseIdentifier:"Photo Cell")
     end    
     photo = self.photos[indexPath.row]
     cell.textLabel.text = photo.title
     cell.detailTextLabel.text = photo.description
     cell
-  end
-
-  # UITableViewDelegate protocol methods
-
-  def tableView(tableView, didSelectRowAtIndexPath:indexPath)
-    NSLog("Row %@ was tapped", indexPath.row)
-    pvc = PhotoViewController.alloc.init
-    pvc.photo = self.photos[indexPath.row]
-    self.navigationController.pushViewController(pvc, animated:true)
   end
 
 end

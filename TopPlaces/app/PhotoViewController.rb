@@ -1,4 +1,9 @@
 class PhotoViewController < UIViewController
+  extend IB
+
+  outlet :spinner, UIActivityIndicatorView
+  outlet :scroll_view, UIScrollView
+
   def photo
     @photo
   end
@@ -18,38 +23,24 @@ class PhotoViewController < UIViewController
     queue.async {
       image = self.photo.image
       Dispatch::Queue.main.async {
-        app_frame = UIScreen.mainScreen.applicationFrame
-        scroll_view = UIScrollView.alloc.initWithFrame(app_frame)
-        scroll_view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin |
-                                        UIViewAutoresizingFlexibleWidth |
-                                        UIViewAutoresizingFlexibleRightMargin |
-                                        UIViewAutoresizingFlexibleTopMargin |
-                                        UIViewAutoresizingFlexibleHeight |
-                                        UIViewAutoresizingFlexibleBottomMargin
-        scroll_view.contentSize = CGSizeMake(320, 758)
-        self.view = scroll_view
 
-        @image_view = UIImageView.alloc.initWithImage(image)
-        self.view.addSubview(@image_view)
-        self.view.delegate = self
-        self.view.contentSize = @image_view.bounds.size
+        @image_view = @image_view = UIImageView.alloc.initWithImage(image)
 
-        x_ratio = self.view.bounds.size.width / @image_view.bounds.size.width
+        @scroll_view.addSubview(@image_view)
+        @scroll_view.delegate = self
+        @scroll_view.contentSize = @image_view.bounds.size
+
+        x_ratio = @scroll_view.bounds.size.width / @image_view.bounds.size.width
         NSLog("x_ratio is %@", x_ratio)
-        y_ratio = self.view.bounds.size.height / @image_view.bounds.size.height
+        y_ratio = @scroll_view.bounds.size.height / @image_view.bounds.size.height
         NSLog("y_ratio is %@", y_ratio)
-        self.view.minimumZoomScale=[x_ratio, y_ratio].min
-        self.view.maximumZoomScale=6.0
-        self.view.zoomScale = [x_ratio, y_ratio].max
+        @scroll_view.minimumZoomScale=[x_ratio, y_ratio].min
+        @scroll_view.maximumZoomScale=6.0
+        @scroll_view.zoomScale = [x_ratio, y_ratio].max
         self.title = self.photo.title
+        @spinner.stopAnimating
       }
     }
-  end
-
-  def loadView
-    spinner = UIActivityIndicatorView.alloc.initWithActivityIndicatorStyle(UIActivityIndicatorViewStyleWhiteLarge)
-    spinner.startAnimating
-    self.view = spinner
   end
 
   # UIScrollViewDelegate protocol

@@ -30,6 +30,11 @@ class TopPlacesViewController < UITableViewController
      initWithStyle UITableViewStylePlain
   end
 
+  def prepareForSegue(segue, sender: sender)
+    indexPath = self.tableView.indexPathForCell sender
+    segue.destinationViewController.place = self.top_places[indexPath.row]
+  end
+
   # UITableViewDataSource protocol methods
 
   def tableView(view, numberOfRowsInSection:section)
@@ -47,21 +52,7 @@ class TopPlacesViewController < UITableViewController
     place = self.top_places[indexPath.row]["_content"].split(", ", 2)
     cell.textLabel.text = place[0]
     cell.detailTextLabel.text = place[1]
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator
     cell
   end
 
-  # UITableViewDelegate protocol methods
-
-  def tableView(tableView, accessoryButtonTappedForRowWithIndexPath:indexPath)
-    NSLog("Row %d was tapped", indexPath.row)
-  end
-  def tableView(tableView, didSelectRowAtIndexPath:indexPath)
-    NSLog("Row %@ was tapped", indexPath.row)
-    # prepare the new vc
-    ppvc = PlacePhotosViewController.alloc.init
-    ppvc.place = self.top_places[indexPath.row]
-    self.navigationController.pushViewController(ppvc, animated:true)
-    # push it onto the stack
-  end
 end
