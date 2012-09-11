@@ -19,6 +19,7 @@ class TopPlacesViewController < ItemListViewController
   end
 
   def reload_items
+    self.top_places = []
     queue = Dispatch::Queue.new("FlickrFetcher")
     queue.async {
       place_array = FlickrPlace.top_places

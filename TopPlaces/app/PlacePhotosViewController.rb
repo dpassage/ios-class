@@ -24,6 +24,7 @@ class PlacePhotosViewController < ItemListViewController
   end
 
   def reload_items
+    self.items = []
     queue = Dispatch::Queue.new("FlickrFetcher")
     queue.async {
       photo_array = self.place.photos(50)
