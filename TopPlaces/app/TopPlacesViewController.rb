@@ -19,9 +19,9 @@ class TopPlacesViewController < UITableViewController
 
     queue = Dispatch::Queue.new("FlickrFetcher")
     queue.async {
-      place_array = FlickrFetcher.topPlaces
+      place_array = FlickrFetcher.topPlaces.map { |p| FlickrPlace.new(p) }
       Dispatch::Queue.main.async {
-            self.top_places = place_array.sort { |a,b| a["_content"] <=> b["_content"] }
+            self.top_places = place_array.sort { |a,b| a.title <=> b.title }
       }
     }
   end
@@ -49,9 +49,9 @@ class TopPlacesViewController < UITableViewController
       cell = UITableViewCell.alloc.initWithStyle(UITableViewCellStyleSubtitle,
                                  reuseIdentifier:"Top Place Cell")
     end    
-    place = self.top_places[indexPath.row]["_content"].split(", ", 2)
-    cell.textLabel.text = place[0]
-    cell.detailTextLabel.text = place[1]
+
+    cell.textLabel.text = self.top_places[indexPath.row].title
+    cell.detailTextLabel.text = self.top_places[indexPath.row].description
     cell
   end
 

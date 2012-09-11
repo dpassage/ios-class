@@ -24,7 +24,7 @@ class PlacePhotosViewController < PhotoListViewController
 
     queue = Dispatch::Queue.new("FlickrFetcher")
     queue.async {
-      photo_array = FlickrFetcher.photosInPlace(self.place, maxResults:50).map { |p| FlickrPhoto.new(p) }
+      photo_array = self.place.photos(50)
       Dispatch::Queue.main.async {
         self.photos = photo_array
       }
@@ -32,7 +32,7 @@ class PlacePhotosViewController < PhotoListViewController
   end
 
   def viewDidLoad
-    self.title = self.place["_content"].split(",", 2)[0]
+    self.title = self.place.title
   end
 
 end
