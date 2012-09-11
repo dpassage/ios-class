@@ -9,7 +9,26 @@ class PlacePhotosViewController < PhotoListViewController
   end
 
   def photos
-    @photos ||= FlickrFetcher.photosInPlace(self.place, maxResults:50).map { |p| FlickrPhoto.new(p) }
+    @photos ||= []
+  end
+
+  def photos=(photos)
+    if (@photos != photos)
+      @photos = photos
+      self.tableView.reloadData if (self.tableView.window)
+    end
+  end
+
+  def viewWillAppear(animated)
+    super
+
+    queue = Dispatch::Queue.new("FlickrFetcher")
+    queue.async {
+      photo_array = FlickrFetcher.photosInPlace(self.place, maxResults:50).map { |p| FlickrPhoto.new(p) }
+      Dispatch::Queue.main.async {
+        self.photos = photo_array
+      }
+    }
   end
 
   def viewDidLoad
