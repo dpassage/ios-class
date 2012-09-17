@@ -4,6 +4,10 @@ class FlickrPhoto
     @photo_dict = photo_dict
   end
 
+  def id
+    @photo_dict["id"]
+  end
+  
   def title
     if @photo_dict["title"] == ""
       if description == ""
