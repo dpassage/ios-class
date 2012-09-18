@@ -26,8 +26,10 @@ class ItemListViewController < UITableViewController
 
   def viewWillAppear(animated)
     super
-
-    refresh(nil)
+ 
+    if self.items.length == 0
+      refresh(nil)
+    end
   end
 
   # UITableViewDataSource protocol methods
