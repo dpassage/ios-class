@@ -77,6 +77,7 @@ class FlickrPhotoCache
   def []=(id, data)
     while self.total_cache_size + data.length > self.cache_size
       url_to_remove = self.files_in_cache_directory_by_date[0].url
+      NSLog("FlickrPhotoCache#[]= removing #{url_to_remove.lastPathComponent}")
       self.file_manager.removeItemAtURL(url_to_remove, error:nil)
     end
 
