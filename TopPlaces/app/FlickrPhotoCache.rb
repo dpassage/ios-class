@@ -1,17 +1,34 @@
 class FlickrPhotoCache
 
- #  class CacheFile
- #    def initialize(ns_url_for_file)
- #      @ns_url = ns_url_for_file
- #    end
- #    def last_access_time
- #    end
- #    def size
- #    end
- #  end
-	# def self.cache
- #    self.new
- #  end
+
+  class CacheFile
+    def initialize(ns_url_for_file)
+      @ns_url = ns_url_for_file
+    end
+    def last_access_time
+      @ns_url.resourceValuesForKeys([NSURLContentAccessDateKey], 
+                              error:nil)[NSURLContentAccessDateKey]
+    end
+    def size
+      @ns_url.resourceValuesForKeys([NSURLFileAllocatedSizeKey], 
+                              error:nil)[NSURLFileAllocatedSizeKey]
+    end
+    def url
+      @ns_url
+    end
+  end
+
+	def self.cache
+    self.new
+  end
+
+  def cache_size
+    @cache_size ||= 10 * 1024 * 1024
+  end
+
+  def cache_size=(size)
+    @cache_size = size
+  end
 
   def file_manager
     @file_manager ||= NSFileManager.defaultManager
@@ -34,15 +51,14 @@ class FlickrPhotoCache
     end
   end
 
-  # def files_in_cache_directory
-  #   files = 
-  #     self.file_manager.contentsOfDirectoryAtURL(self.cache_directory,
-  #                     includingPropertiesForKeys:[NSURLContentAccessDateKey,
-  #                                                 NSURLFileAllocatedSizeKey],
-  #                                        options:0,
-  #                                          error:nil,)
+  def files_in_cache_directory
+      self.file_manager.contentsOfDirectoryAtURL(self.cache_directory,
+                      includingPropertiesForKeys:[NSURLContentAccessDateKey,
+                                                  NSURLFileAllocatedSizeKey],
+                                         options:0,
+                                           error:nil)
 
-  # end
+  end
 
   def [](id)
     file_url = self.cache_directory.URLByAppendingPathComponent(id)
