@@ -18,9 +18,17 @@ class ItemListViewController < UITableViewController
     self.navigationItem.titleView = nil
   end
 
+  def map(sender)
+    NSLog("#{self}#map called with sender #{sender}")
+  end
+
   def prepareForSegue(segue, sender: sender)
-    indexPath = self.tableView.indexPathForCell sender
-    segue.destinationViewController.item = self.items[indexPath.row]
+    if sender.is_a?(UITableViewCell)
+      indexPath = self.tableView.indexPathForCell sender
+      segue.destinationViewController.item = self.items[indexPath.row]
+    elsif segue.identifier == "Map"
+      segue.destinationViewController.items = self.items
+    end
   end
 
   def viewWillAppear(animated)

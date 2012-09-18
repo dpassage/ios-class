@@ -2,7 +2,25 @@ class FlickrPhoto
 
   def initialize(photo_dict)
     @photo_dict = photo_dict
+    NSLog("New photo dict #{photo_dict}")
   end
+
+  # Sample photo_dict from Flickr
+  # {"place_id"=>"xfcEFYhWULKtjYI", 
+  #   "accuracy"=>"16", 
+  #   "farm"=>9, 
+  #   "isfriend"=>0, 
+  #   "originalsecret"=>"9e51989f2e", 
+  #   "secret"=>"b77e2dcf68", 
+  #   "latitude"=>52.3585205078125, 
+  #   "context"=>0, "isfamily"=>0, "geo_is_family"=>0, "id"=>"8000628377", 
+  #   "ispublic"=>1, "longitude"=>4.89108467102051, "geo_is_friend"=>0, 
+  #   "geo_is_public"=>1, "ownername"=>"Rubia Michels", 
+  #   "owner"=>"78285750@N04", "server"=>"8036", "title"=>"", 
+  #   "originalformat"=>"jpg", "woeid"=>"728410", "geo_is_contact"=>0, 
+  #   "dateupload"=>"1347996754", 
+  #   "description"=>{"_content"=>"                               "}, 
+  #   "tags"=>""}
 
   def id
     @photo_dict["id"]
@@ -22,6 +40,14 @@ class FlickrPhoto
 
   def description
     @photo_dict["description"]["_content"]
+  end
+
+  def latitude
+    @photo_dict["latitude"]
+  end
+
+  def longitude
+    @photo_dict["longitude"]
   end
 
   def image
