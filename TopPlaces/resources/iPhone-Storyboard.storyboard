@@ -282,6 +282,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Map" id="h8z-Hh-xdO">
                             <connections>
                                 <action selector="map:" destination="ldT-b9-RJ6" id="AaB-Rl-qFr"/>
+                                <segue destination="rhM-tt-Gaa" kind="push" identifier="Map" id="Ykf-C8-SIN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -290,6 +291,30 @@
             </objects>
             <point key="canvasLocation" x="1010" y="395"/>
         </scene>
+        <!--Photo Map View Controller-->
+        <scene sceneID="czR-1d-WCM">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W5c-6Q-4eN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="rhM-tt-Gaa" customClass="PhotoMapViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yaO-ta-6vg">
+                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="ScW-iD-WmT">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zl0-nF-cmO"/>
+                    <connections>
+                        <outlet property="map" destination="ScW-iD-WmT" id="oMK-gv-Wqy"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1728" y="452"/>
+        </scene>
     </scenes>
     <classes>
         <class className="ItemListViewController" superclassName="UITableViewController">
@@ -297,12 +322,15 @@
             <relationships>
                 <relationship kind="action" name="map:"/>
                 <relationship kind="action" name="refresh:"/>
+                <relationship kind="action" name="refresh_done"/>
                 <relationship kind="action" name="viewWillAppear:"/>
             </relationships>
         </class>
         <class className="PhotoMapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoMapViewController.h"/>
             <relationships>
+                <relationship kind="action" name="items"/>
+                <relationship kind="action" name="viewDidLoad"/>
                 <relationship kind="outlet" name="map" candidateClass="MKMapView"/>
             </relationships>
         </class>
@@ -323,6 +351,7 @@
                 <relationship kind="action" name="cell_name"/>
                 <relationship kind="action" name="items"/>
                 <relationship kind="action" name="place"/>
+                <relationship kind="action" name="reload_items"/>
                 <relationship kind="action" name="viewDidLoad"/>
                 <relationship kind="action" name="viewWillAppear:"/>
             </relationships>
@@ -332,6 +361,7 @@
             <relationships>
                 <relationship kind="action" name="cell_name"/>
                 <relationship kind="action" name="items"/>
+                <relationship kind="action" name="reload_items"/>
                 <relationship kind="action" name="viewDidLoad"/>
                 <relationship kind="action" name="viewWillAppear:"/>
             </relationships>
@@ -347,6 +377,7 @@
             <relationships>
                 <relationship kind="action" name="cell_name"/>
                 <relationship kind="action" name="items"/>
+                <relationship kind="action" name="reload_items"/>
                 <relationship kind="action" name="top_places"/>
                 <relationship kind="action" name="viewDidLoad"/>
                 <relationship kind="action" name="viewWillAppear:"/>
@@ -359,6 +390,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="VX6-bh-vTj"/>
+        <segue reference="Rpe-HV-pTS"/>
     </inferredMetricsTieBreakers>
 </document>
