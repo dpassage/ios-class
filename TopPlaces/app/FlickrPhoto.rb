@@ -25,15 +25,11 @@ class FlickrPhoto
   end
 
   def image
-    NSLog("FlickrPhoto#image: looking in memory")
-    return @image if @image
-
     NSLog("FlickrPhoto#image: looking on disk")
 
     cache_data = FlickrPhotoCache.cache[self.id]
     if cache_data
-      @image = UIImage.imageWithData(cache_data)
-      return @image
+      return UIImage.imageWithData(cache_data)
     end
 
     NSLog("FlickrPhoto#image: loading from URL")
@@ -41,7 +37,7 @@ class FlickrPhoto
     url = FlickrFetcher.urlForPhoto(@photo_dict, format:FlickrPhotoFormatLarge)
     data = NSData.dataWithContentsOfURL(url)
     FlickrPhotoCache.cache[self.id] = data
-    @image = UIImage.imageWithData(data)
+    return UIImage.imageWithData(data)
   end
 
   def save_to_history
