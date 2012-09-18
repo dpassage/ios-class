@@ -1,6 +1,5 @@
 class FlickrPhotoCache
 
-
   class CacheFile
     def initialize(ns_url_for_file)
       @ns_url = ns_url_for_file
@@ -18,8 +17,10 @@ class FlickrPhotoCache
     end
   end
 
+  @@instance = FlickrPhotoCache.new
+
 	def self.cache
-    self.new
+    @@instance
   end
 
   def cache_size
@@ -51,37 +52,37 @@ class FlickrPhotoCache
     end
   end
 
-  def files_in_cache_directory
-      self.file_manager.contentsOfDirectoryAtURL(self.cache_directory,
-                      includingPropertiesForKeys:[NSURLContentAccessDateKey,
-                                                  NSURLFileAllocatedSizeKey],
-                                         options:0,
-                                           error:nil).map { |url|
-        FlickrPhotoCache::CacheFile.new(url)
-      }
+  def files_in_cache_directory_by_date
+    files = self.file_manager.contentsOfDirectoryAtURL(self.cache_directory,
+                    includingPropertiesForKeys:[NSURLContentAccessDateKey,
+                                                NSURLFileAllocatedSizeKey],
+                                       options:0,
+                                         error:nil).map { |url|
+      FlickrPhotoCache::CacheFile.new(url)
+    }
+    files.sort_by { |a| a.last_access_time }
+  end
 
+  def total_cache_size
+    files_in_cache_directory_by_date.inject(0) { |sum, file| sum + file.size }
   end
 
   def [](id)
     file_url = self.cache_directory.URLByAppendingPathComponent(id)
-    NSData.dataWithContentsOfURL(file_url)
-    # look for file in directory
-    # if it's not there, return nil
-    # if it's there, load and return the file as NSData
+    data = NSData.dataWithContentsOfURL(file_url)  
+    NSLog("FlickrPhotoCache#[#{id}] returning data #{data}")
+    data
   end
 
   def []=(id, data)
-    # check size of cache
-    # if not enough room for data, remove until there is
+    while self.total_cache_size + data.length > self.cache_size
+      url_to_remove = self.files_in_cache_directory_by_date[0].url
+      self.file_manager.removeItemAtURL(url_to_remove, error:nil)
+    end
 
-    # - (NSURL *)URLByAppendingPathComponent:(NSString *)pathComponent
     file_url = self.cache_directory.URLByAppendingPathComponent(id)
 
-    # write data to new file using id as its name
-
-    #- (BOOL)writeToURL:(NSURL *)aURL atomically:(BOOL)atomically
     data.writeToURL(file_url, atomically: true)
-    # returns true on success
   end
 
 end

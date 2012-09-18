@@ -1,6 +1,6 @@
 describe "FlickrPhotoCache" do
   before do
-    @fpc = FlickrPhotoCache.new
+    @fpc = FlickrPhotoCache.cache
   end
 
   it "builds a file manager" do
@@ -29,27 +29,27 @@ describe "FlickrPhotoCache" do
     @fpc["This is not a file"].should.be.nil?
   end
 
-  it "returns files in the directory" do
-    files = @fpc.files_in_cache_directory
+  it "returns files in the directory sorted by date" do
+    files = @fpc.files_in_cache_directory_by_date
     files.each { |file| 
-      puts "#{file.size} #{file.last_access_time}" 
       file.should.be.is_a?(FlickrPhotoCache::CacheFile)
     }
 
   end
 
-  # it "removes the oldest file when the total cache size reaches the limit" do
-  #   # set the limit to 10x4096
-  #   @fpc.cache_size = 40960
-  #   data = "Foo".dataUsingEncoding(NSUTF8StringEncoding)
-  #   (1..10).each do |n|
-  #     @fpc[n.to_s] = data
-  #   end
-  #   # cache it 10 times
-  #   # see if the first one is still in the cache
-  #   @fpc["1"].should.be.nil?
-  #   # 
-  # end
+  it "removes the oldest file when the total cache size reaches the limit" do
+    # set the limit to 10x4096
+    @fpc.cache_size = 40960
+    data = "Foo".dataUsingEncoding(NSUTF8StringEncoding)
+    (1..10).each do |n|
+      @fpc[n.to_s] = data
+      sleep 0.2
+    end
+    # cache it 10 times
+    # see if the first one is still in the cache
+    @fpc["1"].should.be.nil?
+    # 
+  end
 
   describe "FlickrPhotoCache::CacheFile" do
     before do
@@ -66,7 +66,6 @@ describe "FlickrPhotoCache" do
     end
     it "returns the last access time" do
       @cachefile.last_access_time.should.be.kind_of?(NSDate)
-      puts @cachefile.last_access_time
     end
     it "returns the nsurl object for the file" do
       @cachefile.url.should == @cachefileurl
