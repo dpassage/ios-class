@@ -56,7 +56,9 @@ class FlickrPhotoCache
                       includingPropertiesForKeys:[NSURLContentAccessDateKey,
                                                   NSURLFileAllocatedSizeKey],
                                          options:0,
-                                           error:nil)
+                                           error:nil).map { |url|
+        FlickrPhotoCache::CacheFile.new(url)
+      }
 
   end
 

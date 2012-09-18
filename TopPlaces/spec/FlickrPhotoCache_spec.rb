@@ -32,10 +32,8 @@ describe "FlickrPhotoCache" do
   it "returns files in the directory" do
     files = @fpc.files_in_cache_directory
     files.each { |file| 
-      puts "#{file.resourceValuesForKeys([NSURLFileAllocatedSizeKey,
-                                          NSURLContentAccessDateKey], 
-                                   error:nil)}" 
-      file.should.be.is_a?(NSURL)
+      puts "#{file.size} #{file.last_access_time}" 
+      file.should.be.is_a?(FlickrPhotoCache::CacheFile)
     }
 
   end
