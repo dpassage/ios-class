@@ -57,6 +57,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Map" id="oHv-FE-LV5">
                             <connections>
                                 <action selector="map:" destination="aY4-71-rKq" id="IXy-0m-evf"/>
+                                <segue destination="lWs-0l-716" kind="push" identifier="Map" id="dNJ-N2-Nbd"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -120,7 +121,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1460" y="-168"/>
+            <point key="canvasLocation" x="1880" y="-154"/>
         </scene>
         <!--Photo Map View Controller-->
         <scene sceneID="mej-ye-zZp">
@@ -144,7 +145,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1935" y="-291"/>
+            <point key="canvasLocation" x="2495" y="-211"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="Y7L-fU-O3U">
@@ -174,7 +175,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2511" y="270"/>
+            <point key="canvasLocation" x="2931" y="284"/>
         </scene>
         <!--Rotating Tab Controller-->
         <scene sceneID="E1e-V4-90F">
@@ -313,7 +314,31 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1728" y="452"/>
+            <point key="canvasLocation" x="1818" y="722"/>
+        </scene>
+        <!--Photo Map View Controller-->
+        <scene sceneID="8jx-8L-8Dk">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fu6-rI-xw6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="lWs-0l-716" customClass="PhotoMapViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZLQ-HH-atQ">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="v89-QI-jDk">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gEt-Vp-8MK"/>
+                    <connections>
+                        <outlet property="map" destination="v89-QI-jDk" id="7Ed-SC-Z2A"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1657" y="-567"/>
         </scene>
     </scenes>
     <classes>
@@ -322,15 +347,12 @@
             <relationships>
                 <relationship kind="action" name="map:"/>
                 <relationship kind="action" name="refresh:"/>
-                <relationship kind="action" name="refresh_done"/>
                 <relationship kind="action" name="viewWillAppear:"/>
             </relationships>
         </class>
         <class className="PhotoMapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoMapViewController.h"/>
             <relationships>
-                <relationship kind="action" name="items"/>
-                <relationship kind="action" name="viewDidLoad"/>
                 <relationship kind="outlet" name="map" candidateClass="MKMapView"/>
             </relationships>
         </class>
@@ -351,7 +373,6 @@
                 <relationship kind="action" name="cell_name"/>
                 <relationship kind="action" name="items"/>
                 <relationship kind="action" name="place"/>
-                <relationship kind="action" name="reload_items"/>
                 <relationship kind="action" name="viewDidLoad"/>
                 <relationship kind="action" name="viewWillAppear:"/>
             </relationships>
@@ -361,7 +382,6 @@
             <relationships>
                 <relationship kind="action" name="cell_name"/>
                 <relationship kind="action" name="items"/>
-                <relationship kind="action" name="reload_items"/>
                 <relationship kind="action" name="viewDidLoad"/>
                 <relationship kind="action" name="viewWillAppear:"/>
             </relationships>
@@ -377,7 +397,6 @@
             <relationships>
                 <relationship kind="action" name="cell_name"/>
                 <relationship kind="action" name="items"/>
-                <relationship kind="action" name="reload_items"/>
                 <relationship kind="action" name="top_places"/>
                 <relationship kind="action" name="viewDidLoad"/>
                 <relationship kind="action" name="viewWillAppear:"/>
@@ -390,6 +409,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Rpe-HV-pTS"/>
+        <segue reference="VX6-bh-vTj"/>
     </inferredMetricsTieBreakers>
 </document>

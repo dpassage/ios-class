@@ -13,6 +13,14 @@ class FlickrPlace
     @place_dict["_content"].split(", ", 2)[1]
   end
 
+  def latitude
+    @place_dict["latitude"].to_f
+  end
+
+  def longitude
+    @place_dict["longitude"].to_f
+  end
+
   def photos(limit)
     FlickrFetcher.photosInPlace(@place_dict, maxResults:limit).map { |p| FlickrPhoto.new(p) }
   end
