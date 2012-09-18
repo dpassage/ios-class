@@ -3,20 +3,19 @@ class ItemListViewController < UITableViewController
   extend IB
 
   def refresh(sender)
-    @button = self.navigationItem.rightBarButtonItem
     NSLog("@button is %@", @button)
     NSLog("%@ sent refresh", sender)
     spinner = UIActivityIndicatorView.alloc.initWithActivityIndicatorStyle(UIActivityIndicatorViewStyleGray)
     NSLog("start animating")
     spinner.startAnimating
     NSLog("set rightBarButtonItem")
-    self.navigationItem.rightBarButtonItem = UIBarButtonItem.alloc.initWithCustomView(spinner)
+    self.navigationItem.titleView = spinner
     NSLog("reload items")
     self.reload_items
   end
 
   def refresh_done
-    self.navigationItem.rightBarButtonItem = @button
+    self.navigationItem.titleView = nil
   end
 
   def prepareForSegue(segue, sender: sender)
