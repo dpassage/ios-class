@@ -29,6 +29,13 @@ class PhotoViewController < UIViewController
     load_photo
   end
 
+  def viewDidAppear(animated)
+    super
+    if self.splitViewController
+      self.splitViewController.delegate = self
+    end
+  end
+
   def load_photo
     if @scroll_view.subviews
       @scroll_view.subviews.each { |view| view.removeFromSuperview }
@@ -64,4 +71,10 @@ class PhotoViewController < UIViewController
   def viewForZoomingInScrollView(scrollView)
     return @image_view
   end
+
+  # UISplitViewControllerDelegate protocol
+  def splitViewController(svc, shouldHideViewController:vc, inOrientation:orientation)
+    false
+  end
+  
 end
