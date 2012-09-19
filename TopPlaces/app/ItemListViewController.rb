@@ -8,7 +8,7 @@ class ItemListViewController < UITableViewController
     spinner = UIActivityIndicatorView.alloc.initWithActivityIndicatorStyle(UIActivityIndicatorViewStyleGray)
     NSLog("start animating")
     spinner.startAnimating
-    NSLog("set rightBarButtonItem")
+    NSLog("set titleView")
     self.navigationItem.titleView = spinner
     NSLog("reload items")
     self.reload_items
