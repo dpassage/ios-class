@@ -42,6 +42,10 @@ class FlickrPhoto
     @photo_dict["description"]["_content"]
   end
 
+  def subtitle
+    description
+  end
+
   def latitude
     @photo_dict["latitude"]
   end
