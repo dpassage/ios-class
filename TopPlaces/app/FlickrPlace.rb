@@ -2,7 +2,6 @@ class FlickrPlace
 
   def initialize(place_dict)
     @place_dict = place_dict
-    NSLog("FlickrPlace %@", place_dict)
   end
 
   def title

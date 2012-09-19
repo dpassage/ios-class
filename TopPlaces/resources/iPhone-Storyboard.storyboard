@@ -182,7 +182,7 @@
         <scene sceneID="E1e-V4-90F">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="06F-V8-Xyi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tabBarController definesPresentationContext="YES" id="z4e-1K-noI" customClass="RotatingTabController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="Main" definesPresentationContext="YES" id="z4e-1K-noI" customClass="RotatingTabController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="1le-8S-JJo">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
@@ -369,6 +369,7 @@
                 <relationship kind="action" name="load_photo"/>
                 <relationship kind="action" name="photo"/>
                 <relationship kind="action" name="shouldAutorotateToInterfaceOrientation:"/>
+                <relationship kind="action" name="viewDidAppear:"/>
                 <relationship kind="action" name="viewForZoomingInScrollView:"/>
                 <relationship kind="action" name="viewWillAppear:"/>
                 <relationship kind="outlet" name="scroll_view" candidateClass="UIScrollView"/>

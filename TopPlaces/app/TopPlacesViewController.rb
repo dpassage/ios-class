@@ -35,11 +35,11 @@ class TopPlacesViewController < ItemListViewController
     "Top Place Cell"
   end
 
-  def viewWillAppear(animated)
-    super
+  # def viewWillAppear(animated)
+  #   super
 
-    refresh(nil)
-   end
+  #   refresh(nil)
+  #  end
 
   def viewDidLoad
     self.title = "Top Places"

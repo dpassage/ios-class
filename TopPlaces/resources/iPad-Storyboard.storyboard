@@ -160,8 +160,7 @@
         <scene sceneID="xHS-aX-HlO">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CnB-Vl-CFd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <splitViewController title="Top Places" id="Y8z-Jc-yDq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="topRated" id="YRO-M9-Hfp"/>
+                <splitViewController storyboardIdentifier="Main" title="Top Places" id="Y8z-Jc-yDq" sceneMemberID="viewController">
                     <toolbarItems/>
                     <connections>
                         <segue destination="Fiz-Qv-jx1" kind="relationship" relationship="detailViewController" id="8iP-lC-XeJ"/>

@@ -33,8 +33,8 @@ class ItemListViewController < UITableViewController
 
   def viewWillAppear(animated)
     super
- 
-    if self.items.length == 0
+    NSLog("ItemListViewController#viewWillAppear: self.items.size is #{self.items.size}")
+    if self.items.size == 0
       refresh(nil)
     end
   end
@@ -50,7 +50,6 @@ class ItemListViewController < UITableViewController
   end
 
   def tableView(view, cellForRowAtIndexPath:indexPath)
-    NSLog("In tableView:cellForRowAtIndexPath %@", indexPath)
     cell = self.tableView.dequeueReusableCellWithIdentifier(self.cell_name)
     if (!cell) 
       cell = UITableViewCell.alloc.initWithStyle(UITableViewCellStyleSubtitle,
