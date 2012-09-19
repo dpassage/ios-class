@@ -45,5 +45,23 @@ class PhotoMapViewController < UIViewController
     end
     pinView
   end
-  
+
+  def mapView(theMapView, didSelectAnnotationView:annotation_view)
+    annotation = annotation_view.annotation
+    if annotation.respond_to?(:thumbnail)
+      NSLog("adding thumbnail to pinview")
+      queue = Dispatch::Queue.new("FlickrFetcher")
+      queue.async {
+        thumbnail = annotation.thumbnail
+        NSLog("thumbnail is #{thumbnail}")
+        Dispatch::Queue.main.async {
+          thumb_view = UIImageView.alloc.initWithFrame([[0,0],[30,30]])
+          thumb_view.image = thumbnail
+          annotation_view.leftCalloutAccessoryView = thumb_view
+        }
+      }
+    end
+
+  end
+
 end

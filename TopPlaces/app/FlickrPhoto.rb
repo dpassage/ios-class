@@ -51,18 +51,26 @@ class FlickrPhoto
   end
 
   def image
+    grab_image("main", FlickrPhotoFormatLarge)
+  end
+
+  def thumbnail
+    grab_image("thumb", FlickrPhotoFormatSquare)
+  end
+
+  def grab_image(type, format)
     NSLog("FlickrPhoto#image: looking on disk")
 
-    cache_data = FlickrPhotoCache.cache[self.id]
+    cache_data = FlickrPhotoCache.cache[self.id + type]
     if cache_data
       return UIImage.imageWithData(cache_data)
     end
 
     NSLog("FlickrPhoto#image: loading from URL")
 
-    url = FlickrFetcher.urlForPhoto(@photo_dict, format:FlickrPhotoFormatLarge)
+    url = FlickrFetcher.urlForPhoto(@photo_dict, format:format)
     data = NSData.dataWithContentsOfURL(url)
-    FlickrPhotoCache.cache[self.id] = data
+    FlickrPhotoCache.cache[self.id+type] = data
     return UIImage.imageWithData(data)
   end
 
