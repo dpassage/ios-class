@@ -10,6 +10,6 @@ Motion::Project::App.setup do |app|
   app.name = 'TopPlaces'
   app.identifier = "com.flophouse.cs193p.#{app.name}"
   app.vendor_project('vendor', :static)
-  app.device_family = [:iphone]
+  app.device_family = [:iphone, :ipad]
   app.frameworks << 'MapKit'
 end
