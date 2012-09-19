@@ -16,7 +16,7 @@ class PhotoViewController < UIViewController
     if @photo != newphoto
       @photo = newphoto
       newphoto.save_to_history if newphoto
-      load_photo
+      load_photo if @scroll_view
     end
   end
 
@@ -26,7 +26,6 @@ class PhotoViewController < UIViewController
 
   def viewWillAppear(animated)
     super
-    return unless self.photo
     load_photo
   end
 
@@ -34,6 +33,8 @@ class PhotoViewController < UIViewController
     if @scroll_view.subviews
       @scroll_view.subviews.each { |view| view.removeFromSuperview }
     end
+    return unless self.photo
+
     @spinner.startAnimating
     queue = Dispatch::Queue.new("FlickrFetcher")
     queue.async {
