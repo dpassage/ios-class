@@ -39,6 +39,10 @@ class ItemListViewController < UITableViewController
     end
   end
 
+  def shouldAutorotateToInterfaceOrientation(interfaceOrientation)
+    true
+  end
+
   # UITableViewDataSource protocol methods
 
   def tableView(view, numberOfRowsInSection:section)

@@ -13,8 +13,11 @@ class PhotoViewController < UIViewController
   end
 
   def photo=(newphoto)
-    @photo = newphoto
-    newphoto.save_to_history if newphoto
+    if @photo != newphoto
+      @photo = newphoto
+      newphoto.save_to_history if newphoto
+      load_photo
+    end
   end
 
   def shouldAutorotateToInterfaceOrientation(orientation)
@@ -24,6 +27,14 @@ class PhotoViewController < UIViewController
   def viewWillAppear(animated)
     super
     return unless self.photo
+    load_photo
+  end
+
+  def load_photo
+    if @scroll_view.subviews
+      @scroll_view.subviews.each { |view| view.removeFromSuperview }
+    end
+    @spinner.startAnimating
     queue = Dispatch::Queue.new("FlickrFetcher")
     queue.async {
       image = self.photo.image
