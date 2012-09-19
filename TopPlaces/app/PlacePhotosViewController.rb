@@ -44,4 +44,12 @@ class PlacePhotosViewController < ItemListViewController
     self.title = self.place.title
   end
 
+  def tableView(tableView, didSelectRowAtIndexPath:indexPath)
+    NSLog("PlacePhotosViewController#tableView:didSelectRowAtIndexPath")
+    item = self.items[indexPath.row]
+    if splitViewController
+      splitViewController.viewControllers.lastObject.item = self.items[indexPath.row]
+    end
+  end
+
 end

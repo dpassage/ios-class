@@ -69,12 +69,12 @@
             </objects>
             <point key="canvasLocation" x="161" y="217"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller-->
         <scene sceneID="zZe-UR-Suh">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f05-AG-nul" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="yUJ-gf-YcJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Tig-Yj-LJ2"/>
+                    <tabBarItem key="tabBarItem" systemItem="recents" id="Tig-Yj-LJ2"/>
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="sDX-30-ryv">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -85,12 +85,12 @@
             </objects>
             <point key="canvasLocation" x="-857" y="273"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller-->
         <scene sceneID="yY9-eq-w3a">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g7y-2c-zba" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="qo9-1c-1LV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="rrA-Te-c0s"/>
+                    <tabBarItem key="tabBarItem" systemItem="topRated" id="rrA-Te-c0s"/>
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="7wj-7y-N1I">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -111,7 +111,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="kx3-Pd-GvV" detailTextLabel="mqG-O1-CGs" style="IBUITableViewCellStyleSubtitle" id="7wv-wG-1wt">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Top Place Cell" textLabel="kx3-Pd-GvV" detailTextLabel="mqG-O1-CGs" style="IBUITableViewCellStyleSubtitle" id="7wv-wG-1wt">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -194,7 +194,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-1601" y="2568"/>
+            <point key="canvasLocation" x="-1345" y="1676"/>
         </scene>
         <!--Place Photos View Controller-->
         <scene sceneID="oNq-db-gga">
@@ -269,6 +269,7 @@
                 <relationship kind="action" name="load_photo"/>
                 <relationship kind="action" name="photo"/>
                 <relationship kind="action" name="shouldAutorotateToInterfaceOrientation:"/>
+                <relationship kind="action" name="viewDidAppear:"/>
                 <relationship kind="action" name="viewForZoomingInScrollView:"/>
                 <relationship kind="action" name="viewWillAppear:"/>
                 <relationship kind="outlet" name="scroll_view" candidateClass="UIScrollView"/>
@@ -291,7 +292,6 @@
                 <relationship kind="action" name="cell_name"/>
                 <relationship kind="action" name="items"/>
                 <relationship kind="action" name="reload_items"/>
-                <relationship kind="action" name="row_selected:"/>
                 <relationship kind="action" name="viewDidLoad"/>
             </relationships>
         </class>
