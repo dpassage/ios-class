@@ -79,6 +79,12 @@ class FlickrPhoto
     NSUserDefaults.standardUserDefaults.setObject(history, forKey:"photo_history")
   end
 
+  # MKAnnotation methods
+
+  def coordinate
+    @coordinate ||= CLLocationCoordinate2D.new(self.latitude, self.longitude)
+  end
+
   def self.get_photo_history
     history = NSUserDefaults.standardUserDefaults.arrayForKey("photo_history")
     history.map { |e| FlickrPhoto.new(e) }

@@ -21,6 +21,13 @@ class FlickrPlace
     @place_dict["longitude"].to_f
   end
 
+  # MKAnnotation methods
+
+  def coordinate
+    @coordinate ||= CLLocationCoordinate2D.new(self.latitude, self.longitude)
+  end
+
+
   def photos(limit)
     FlickrFetcher.photosInPlace(@place_dict, maxResults:limit).map { |p| FlickrPhoto.new(p) }
   end

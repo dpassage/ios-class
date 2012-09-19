@@ -28,14 +28,7 @@ class PhotoMapViewController < UIViewController
 
     self.map.region = region
 
-    annotations = @items.map do |item|
-      annotation = MKPointAnnotation.alloc.init
-      annotation.coordinate = [item.latitude, item.longitude]
-      annotation.title = item.title
-      annotation
-    end
-
-    self.map.addAnnotations(annotations)
+    self.map.addAnnotations(@items)
 
   end
 
