@@ -32,6 +32,11 @@ class PhotoMapViewController < UIViewController
 
   end
 
+  def prepareForSegue(segue, sender:sender)
+    item = sender.annotation
+    segue.destinationViewController.item = item
+  end
+
   # MKMapViewDelegate methods
   def mapView(theMapView, viewForAnnotation:annotation)
     pinView = theMapView.dequeueReusableAnnotationViewWithIdentifier("PhotoPin")
@@ -40,6 +45,7 @@ class PhotoMapViewController < UIViewController
                                                     reuseIdentifier:"PhotoPin")
        pinView.animatesDrop = true
        pinView.canShowCallout = true
+       pinView.rightCalloutAccessoryView = UIButton.buttonWithType(UIButtonTypeDetailDisclosure)
     else
       pinView.annotation = annotation;
     end
@@ -61,7 +67,11 @@ class PhotoMapViewController < UIViewController
         }
       }
     end
+  end
 
+  def mapView(theMapView, annotationView:annotation_view, calloutAccessoryControlTapped:control)
+    NSLog("PhotoMapViewController#mapView:annotationView:calloutAccessoryControlTapped")
+    performSegueWithIdentifier("PhotoMap", sender:annotation_view)
   end
 
 end

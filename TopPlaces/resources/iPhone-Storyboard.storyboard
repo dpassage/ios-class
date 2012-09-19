@@ -142,6 +142,7 @@
                     <navigationItem key="navigationItem" id="oAL-Ur-u72"/>
                     <connections>
                         <outlet property="map" destination="75f-mn-KDE" id="6bH-H0-fG7"/>
+                        <segue destination="r99-dP-Iii" kind="push" identifier="PhotoMap" id="523-tc-8hZ"/>
                     </connections>
                 </viewController>
             </objects>
@@ -311,6 +312,7 @@
                     <navigationItem key="navigationItem" id="zl0-nF-cmO"/>
                     <connections>
                         <outlet property="map" destination="ScW-iD-WmT" id="oMK-gv-Wqy"/>
+                        <segue destination="r99-dP-Iii" kind="push" identifier="PhotoMap" id="sWS-c7-cPs"/>
                     </connections>
                 </viewController>
             </objects>
@@ -335,10 +337,11 @@
                     <navigationItem key="navigationItem" id="gEt-Vp-8MK"/>
                     <connections>
                         <outlet property="map" destination="v89-QI-jDk" id="7Ed-SC-Z2A"/>
+                        <segue destination="d6e-cj-I4n" kind="push" identifier="PhotoMap" id="x0e-uq-KeK"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1657" y="-567"/>
+            <point key="canvasLocation" x="1569" y="-859"/>
         </scene>
     </scenes>
     <classes>
@@ -352,9 +355,6 @@
         </class>
         <class className="PhotoMapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoMapViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="map" candidateClass="MKMapView"/>
-            </relationships>
         </class>
         <class className="PhotoViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoViewController.h"/>
@@ -409,6 +409,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="VX6-bh-vTj"/>
+        <segue reference="sWS-c7-cPs"/>
+        <segue reference="x0e-uq-KeK"/>
     </inferredMetricsTieBreakers>
 </document>
