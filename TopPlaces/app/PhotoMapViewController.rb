@@ -31,6 +31,7 @@ class PhotoMapViewController < UIViewController
     annotations = @items.map do |item|
       annotation = MKPointAnnotation.alloc.init
       annotation.coordinate = [item.latitude, item.longitude]
+      annotation.title = item.title
       annotation
     end
 
@@ -45,6 +46,7 @@ class PhotoMapViewController < UIViewController
        pinView = MKPinAnnotationView.alloc.initWithAnnotation(annotation,
                                                     reuseIdentifier:"PhotoPin")
        pinView.animatesDrop = true
+       pinView.canShowCallout = true
     else
       pinView.annotation = annotation;
     end
